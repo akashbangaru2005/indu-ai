@@ -66,7 +66,11 @@ INDU_DATA_DIR=/tmp/indu
 
 Render's `RENDER_EXTERNAL_HOSTNAME` is automatically accepted as an HTTP/WebSocket host and same-origin HTTPS frontend. For a custom backend domain, additionally set `INDU_ALLOWED_HOSTS=api.example.com`; frontend CORS origins and backend hostnames are separate settings. The hostname comes from Render's [built-in environment variables](https://render.com/docs/environment-variables).
 
-`render.yaml` contains the same configuration for Blueprint-managed services, with secret values left for the dashboard. For an existing manually configured service, update its build/start commands and environment settings explicitly; simply adding the YAML file does not change its dashboard settings. Redeploy after these changes; clear the build cache if it retains the old build configuration.
+For this production backend, set `INDU_ALLOWED_HOSTS=indu-ai.onrender.com,localhost,127.0.0.1` in Render. Use hostnames only, without `https://`, paths or a wildcard. The exact `indu-ai.onrender.com` hostname is also included in the default host policy, so missing deployment-mode metadata cannot reject this known host. Render's supplied hostname is recognized independently of the mode flag. Production wildcard host values are rejected at startup.
+
+`Invalid host header` comes from TrustedHostMiddleware, which remains enabled. It is separate from CORS. Adding a frontend URL to `INDU_ALLOWED_ORIGINS` does not authorize an HTTP Host header, and spoofed `X-Forwarded-Host` is not used to bypass the allowlist. No blanket forwarded-proxy trust or host rewriting is enabled for this fix.
+
+`render.yaml` contains the same configuration for Blueprint-managed services, with secret values left for the dashboard. For an existing manually configured service, update its build/start commands and environment settings explicitly; simply adding the YAML file does not change its dashboard settings. Redeploy after these changes; clear the build cache if it retains the old build configuration. After deployment, check `https://indu-ai.onrender.com/` and `https://indu-ai.onrender.com/health`; local success alone does not verify the deployed service.
 
 In cloud mode:
 

@@ -66,9 +66,12 @@ def run_http_server(checks):
                     else:
                         raise AssertionError("Cloud Uvicorn health check timed out")
                     assert response.json()["deployment_mode"] == "cloud"
-                with connect(f"ws://127.0.0.1:{port}/ws/voice", origin="https://frontend.example", proxy=None, open_timeout=5) as websocket:
+                    for path in ("/", "/health"):
+                        assert client.get(address + path, headers={"Host":"indu-ai.onrender.com"}).status_code == 200
+                connection = socket.create_connection(("127.0.0.1", port), timeout=5)
+                with connect(f"ws://indu-ai.onrender.com:{port}/ws/voice", sock=connection, origin="https://frontend.example", proxy=None, open_timeout=5) as websocket:
                     assert json.loads(websocket.recv())["type"] == "error"  # key intentionally absent
-                checks.append("Real Uvicorn process starts, /health responds and /ws/voice accepts an upgrade without local dependencies")
+                checks.append("Real Uvicorn serves root/health and accepts a voice WebSocket with the production Host header")
             finally:
                 if process.poll() is None:
                     try:
@@ -118,6 +121,15 @@ def main():
             preflight = client.options("/api/chat", headers={"Origin":"https://frontend.example", "Access-Control-Request-Method":"POST", "Access-Control-Request-Headers":"Content-Type"})
             assert preflight.status_code == 200 and preflight.headers["access-control-allow-origin"] == "https://frontend.example"
             checks.append("Cloud health, Render/custom host routing and explicit frontend CORS work")
+            for hostname in ("indu-ai.onrender.com", "indu-ai.onrender.com:443", "localhost", "127.0.0.1"):
+                for path in ("/", "/health"):
+                    response = client.get(path, headers={"Host":hostname})
+                    assert response.status_code == 200 and isinstance(response.json(), dict)
+            for path in ("/", "/health"):
+                assert client.get(path, headers={"Host":"indu-ai.onrender.com.attacker.example"}).status_code == 400
+                assert client.get(path, headers={"Host":"attacker.example", "X-Forwarded-Host":"indu-ai.onrender.com"}).status_code == 400
+                assert client.get(path, headers={"Host":"indu-ai.onrender.com", "X-Forwarded-Host":"attacker.example", "X-Forwarded-Proto":"https"}).status_code == 200
+            checks.append("Root and health accept production/local hosts, reject untrusted/lookalike hosts and cannot be bypassed with X-Forwarded-Host")
             for target in ["YouTube", "Instagram", "Chrome", "Microsoft Word", "Excel", "PowerPoint", "Visual Studio Code", "Settings", "Calculator", "File Explorer", "Downloads", "Bluetooth settings", "Wi-Fi settings"]:
                 response = client.post("/api/chat", json={"message":"Open " + target})
                 assert response.status_code == 200 and response.json()["success"] is False
@@ -182,7 +194,7 @@ def main():
                     provider.closed = True
             fake = NS(aio=NS(live=NS(connect=connect)), close=Mock())
             with patch.object(main_api, "GEMINI_API_KEY", "cloud-fixture-not-a-real-key"), patch.object(main_api, "gemini_client", fake):
-                with client.websocket_connect("/ws/voice", headers={"Origin":"https://frontend.example"}) as websocket:
+                with client.websocket_connect("/ws/voice", headers={"Host":"indu-ai.onrender.com", "Origin":"https://frontend.example"}) as websocket:
                     assert websocket.receive_json()["type"] == "ready"
                     for turn in range(5):
                         websocket.send_bytes(b"\x00\x00" * 32)

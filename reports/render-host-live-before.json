@@ -1,0 +1,10 @@
+{
+  "phase": "before_host_fix_deployment",
+  "domain": "https://indu-ai.onrender.com",
+  "results": [
+    {"path": "/", "status": 400, "body": "Invalid host header"},
+    {"path": "/health", "status": 400, "body": "Invalid host header"}
+  ],
+  "new_code_pushed": false,
+  "deployment_fixed": false
+}

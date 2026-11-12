@@ -22,9 +22,12 @@ def allowed_origins():
 
 
 def allowed_hosts():
-    hosts = ["127.0.0.1", "localhost", "testserver"]
+    # Keep the known public host valid even if deployment mode was not set.
+    hosts = ["127.0.0.1", "localhost", "testserver", "indu-ai.onrender.com"]
     hosts.extend(value.strip() for value in os.environ.get("INDU_ALLOWED_HOSTS", "").split(",") if value.strip())
-    if is_cloud():
-        hosts.extend(filter(None, [os.environ.get("RENDER_EXTERNAL_HOSTNAME")]))
-        # Custom public API domains must be explicit; CORS frontends are separate.
+    render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip()
+    if render_host:
+        hosts.append(render_host)
+    if (is_cloud() or render_host) and any("*" in host for host in hosts):
+        raise ValueError("Production INDU_ALLOWED_HOSTS must use explicit hostnames, without wildcards.")
     return list(dict.fromkeys(hosts))

@@ -1,0 +1,26 @@
+{
+  "status": "local_host_fix_passed_deployment_pending",
+  "backend_tests": 76,
+  "cloud_checks": 9,
+  "platform": "Windows",
+  "python": "3.13.5",
+  "local_root_health_production_host_status": 200,
+  "untrusted_host_status": 400,
+  "forwarded_host_spoof_rejected": true,
+  "real_production_host_websocket_upgrade": "passed locally",
+  "gemini_live_five_turns": "passed with mocked provider",
+  "render_allowed_hosts": "indu-ai.onrender.com,localhost,127.0.0.1",
+  "middleware_enabled": true,
+  "cors_changed_for_host_fix": false,
+  "production_wildcards_allowed": false,
+  "pushed": false,
+  "render_deployed": false,
+  "live_after_deploy_verified": false,
+  "live_before_deploy": "400 Invalid host header on root and health",
+  "real_gemini_api_requests": false,
+  "evidence": [
+    "render-host-tests.log",
+    "render-host-cloud-smoke.json",
+    "render-host-live-before.json"
+  ]
+}

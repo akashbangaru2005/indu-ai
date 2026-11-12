@@ -17,7 +17,25 @@ class DeploymentTests(unittest.TestCase):
             self.assertEqual(deployment_mode(), "local")
             self.assertFalse(is_cloud())
             self.assertIn("http://localhost:5173", allowed_origins())
-            self.assertEqual(allowed_hosts(), ["127.0.0.1", "localhost", "testserver"])
+            self.assertEqual(allowed_hosts(), ["127.0.0.1", "localhost", "testserver", "indu-ai.onrender.com"])
+
+    def test_public_hostname_is_allowed_without_cloud_mode_or_platform_metadata(self):
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertIn("indu-ai.onrender.com", allowed_hosts())
+            self.assertNotIn("*", allowed_hosts())
+
+    def test_render_hostname_is_allowed_even_without_mode_flag(self):
+        with patch.dict(os.environ, {"RENDER_EXTERNAL_HOSTNAME":"another-indu.onrender.com"}, clear=True):
+            self.assertIn("another-indu.onrender.com", allowed_hosts())
+
+    def test_production_rejects_wildcard_host_configuration(self):
+        for values in [
+            {"INDU_DEPLOYMENT_MODE":"cloud", "INDU_ALLOWED_HOSTS":"*"},
+            {"RENDER_EXTERNAL_HOSTNAME":"indu-ai.onrender.com", "INDU_ALLOWED_HOSTS":"localhost,*"},
+        ]:
+            with self.subTest(values=values), patch.dict(os.environ, values, clear=True):
+                with self.assertRaisesRegex(ValueError, "without wildcards"):
+                    allowed_hosts()
 
     def test_cloud_allows_render_domain_and_explicit_frontend_without_wildcard(self):
         with patch.dict(os.environ, {"INDU_DEPLOYMENT_MODE":"cloud", "RENDER_EXTERNAL_HOSTNAME":"indu-test.onrender.com", "INDU_ALLOWED_ORIGINS":"https://frontend.example/", "INDU_ALLOWED_HOSTS":"api.example.com"}, clear=True):

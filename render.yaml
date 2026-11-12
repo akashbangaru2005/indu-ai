@@ -8,6 +8,8 @@ services:
     envVars:
       - key: INDU_DEPLOYMENT_MODE
         value: cloud
+      - key: INDU_ALLOWED_HOSTS
+        value: indu-ai.onrender.com,localhost,127.0.0.1
       - key: INDU_DATA_DIR
         value: /tmp/indu
       - key: GEMINI_API_KEY
