@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "question": "What is the Bitcoin price right now?",
+      "status": "passed",
+      "response": "BTC-USD: $71,830.69 USD. Source: Coinbase Exchange (last trade, 2026-11-12T17:36:19.437564303Z); retrieved 2026-11-12T17:36:17+00:00."
+    },
+    {
+      "question": "What is today's weather in Hyderabad?",
+      "status": "passed",
+      "response": "Hyderabad, India: 23.1 \u00b0C, humidity 53%, wind 6.0 km/h. Source: Open-Meteo modelled current conditions, 2026-11-12T23:00 Asia/Kolkata; retrieved 2026-11-12T17:36:18+00:00. Location: GeoNames."
+    },
+    {
+      "question": "What is the latest technology news?",
+      "status": "passed",
+      "response": "BBC Technology headlines, retrieved 2026-11-12T17:36:18+00:00:\n\u2022 The rise and fall of Jensen Huang - how the tech superstar became mired in scandal (Thu, 12 Nov 2026 17:11:48 GMT) \u2014 https://www.bbc.co.uk/news/articles/cmze750zg0jeo?at_medium=RSS&at_campaign=rss\n\u2022 Zoe Kleinman: How AI visionary Jensen Huang was undone by his own bad decisions (Thu, 12 Nov 2026 16:43:36 GMT) \u2014 https://www.bbc.co.uk/news/articles/cq5y13819gpjo?at_medium=RSS&at_campaign=rss\n\u2022 What we know as Nvidia CEO Jensen Huang resigns over affair allegations (Thu, 12 Nov 2026 15:26:39 GMT) \u2014 https://www.bbc.co.uk/news/articles/ckgel338xql3o?at_medium=RSS&at_campaign=rss\n\u2022 Who is Nvidia's interim CEO Colette Kress - and who could take over permanently? (Thu, 12 Nov 2026 15:10:32 GMT) \u2014 https://www.bbc.co.uk/news/articles/cqgm37dv20e8o?at_medium=RSS&at_campaign=rss\n\u2022 Lego marketplace BrickLink offline after 'unusual activity' detected (Wed, 11 Nov 2026 22:26:18 GMT) \u2014 https://www.bbc.co.uk/news/articles/c6rmgw8zynr4o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "question": "What is the current time in Paris?",
+      "status": "passed",
+      "response": "The time in Europe/Paris is Thursday, 12 November 2026, 06:36:18 PM CET. Source: this computer's clock and IANA time zone data; checked 2026-11-12T17:36:18+00:00."
+    }
+  ],
+  "scope": "Real public provider connectivity; no prices or headlines are fabricated when an endpoint fails."
+}

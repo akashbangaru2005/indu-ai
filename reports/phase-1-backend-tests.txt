@@ -1,0 +1,53 @@
+test_action_failure_is_visible (test_api.ApiTests.test_action_failure_is_visible) ... ok
+test_backend_imports_without_optional_voice_packages (test_api.ApiTests.test_backend_imports_without_optional_voice_packages) ... ok
+test_contact_management_and_confirmation_boundary (test_api.ApiTests.test_contact_management_and_confirmation_boundary) ... ok
+test_health_reports_degraded_and_does_not_load_whisper (test_api.ApiTests.test_health_reports_degraded_and_does_not_load_whisper) ... ok
+test_knowledge_question_uses_brain_without_browser_action (test_api.ApiTests.test_knowledge_question_uses_brain_without_browser_action) ... ok
+test_live_config_matches_installed_sdk (test_api.ApiTests.test_live_config_matches_installed_sdk) ... ok
+test_missing_voice_configuration_returns_error_and_closes (test_api.ApiTests.test_missing_voice_configuration_returns_error_and_closes) ... ok
+test_root_and_blank_input (test_api.ApiTests.test_root_and_blank_input) ... ok
+test_speech_response_deletes_generated_file (test_api.ApiTests.test_speech_response_deletes_generated_file) ... ok
+test_untrusted_browser_origin_is_blocked_before_action (test_api.ApiTests.test_untrusted_browser_origin_is_blocked_before_action) ... ok
+test_untrusted_origin_cannot_confirm_a_preview (test_api.ApiTests.test_untrusted_origin_cannot_confirm_a_preview) ... ok
+test_untrusted_websocket_origin_is_rejected (test_api.ApiTests.test_untrusted_websocket_origin_is_rejected) ... ok
+test_upstream_error_status_is_propagated (test_api.ApiTests.test_upstream_error_status_is_propagated) ... ok
+test_failed_tts_cleans_up_partial_file (test_audio.AudioTests.test_failed_tts_cleans_up_partial_file) ... ok
+test_recording_files_are_unique_valid_mono_wavs (test_audio.AudioTests.test_recording_files_are_unique_valid_mono_wavs) ... ok
+test_stt_detects_language_and_surfaces_transcription_failure (test_audio.AudioTests.test_stt_detects_language_and_surfaces_transcription_failure) ... ok
+test_tts_uses_unique_files_and_selects_script_voice (test_audio.AudioTests.test_tts_uses_unique_files_and_selects_script_voice) ... ok
+test_browser_work_and_cleanup_stay_on_one_thread (test_audio.BrowserThreadTests.test_browser_work_and_cleanup_stay_on_one_thread) ... ok
+test_demo_preserves_audio_chunk_order_across_turns (test_audio.DemoTests.test_demo_preserves_audio_chunk_order_across_turns) ... ok
+test_microphone_callback_schedules_queue_access_on_event_loop (test_audio.DemoTests.test_microphone_callback_schedules_queue_access_on_event_loop) ... ok
+test_concurrent_chat_payloads_preserve_turn_order (test_brain.BrainTests.test_concurrent_chat_payloads_preserve_turn_order) ... ok
+test_health_checks_model_presence (test_brain.BrainTests.test_health_checks_model_presence) ... ok
+test_history_keeps_complete_turns_under_odd_limit (test_brain.BrainTests.test_history_keeps_complete_turns_under_odd_limit) ... ok
+test_malformed_and_empty_model_responses_fail (test_brain.BrainTests.test_malformed_and_empty_model_responses_fail) ... ok
+test_upstream_failures_have_http_status_and_do_not_change_history (test_brain.BrainTests.test_upstream_failures_have_http_status_and_do_not_change_history) ... ok
+test_zero_history_does_not_retain_messages (test_brain.BrainTests.test_zero_history_does_not_retain_messages) ... ok
+test_disconnect_cancels_upstream_receiver (test_live.LiveTests.test_disconnect_cancels_upstream_receiver) ... ok
+test_fragmented_command_is_executed_once_after_completion (test_live.LiveTests.test_fragmented_command_is_executed_once_after_completion) ... ok
+test_invalid_audio_and_json_do_not_crash_receiver (test_live.LiveTests.test_invalid_audio_and_json_do_not_crash_receiver) ... ok
+test_receive_continues_across_turns_and_repeated_commands_work (test_live.LiveTests.test_receive_continues_across_turns_and_repeated_commands_work) ... ok
+test_upstream_error_is_propagated_and_browser_task_cleaned_up (test_live.LiveTests.test_upstream_error_is_propagated_and_browser_task_cleaned_up) ... ok
+test_browser_failure_is_not_reported_as_success (test_router.RouterTests.test_browser_failure_is_not_reported_as_success) ... ok
+test_direct_send_preserves_case_punctuation_and_request_id (test_router.RouterTests.test_direct_send_preserves_case_punctuation_and_request_id) ... ok
+test_multiword_names_aliases_and_saying_delimiters (test_router.RouterTests.test_multiword_names_aliases_and_saying_delimiters) ... ok
+test_negated_and_quoted_messages_do_not_send (test_router.RouterTests.test_negated_and_quoted_messages_do_not_send) ... ok
+test_polite_punctuation_and_no_shell_injection (test_router.RouterTests.test_polite_punctuation_and_no_shell_injection) ... ok
+test_routing_corpus (test_router.RouterTests.test_routing_corpus) ... ok
+test_unknown_contact_returns_failure_without_opening_browser (test_router.RouterTests.test_unknown_contact_returns_failure_without_opening_browser) ... ok
+test_ambiguous_legacy_names_are_rejected (test_whatsapp.ContactTests.test_ambiguous_legacy_names_are_rejected) ... ok
+test_contacts_persist_with_normalized_phone_and_alias (test_whatsapp.ContactTests.test_contacts_persist_with_normalized_phone_and_alias) ... ok
+test_duplicate_alias_rejected_and_edit_and_delete_work (test_whatsapp.ContactTests.test_duplicate_alias_rejected_and_edit_and_delete_work) ... ok
+test_invalid_numbers_and_empty_names_are_rejected (test_whatsapp.ContactTests.test_invalid_numbers_and_empty_names_are_rejected) ... ok
+test_browser_failure_does_not_claim_message_was_sent (test_whatsapp.SendTests.test_browser_failure_does_not_claim_message_was_sent) ... ok
+test_cancelled_and_expired_previews_cannot_open_browser (test_whatsapp.SendTests.test_cancelled_and_expired_previews_cannot_open_browser) ... ok
+test_conflicting_request_id_is_rejected (test_whatsapp.SendTests.test_conflicting_request_id_is_rejected) ... ok
+test_message_body_is_not_persisted (test_whatsapp.SendTests.test_message_body_is_not_persisted) ... ok
+test_prepare_never_opens_browser_and_confirmation_opens_once (test_whatsapp.SendTests.test_prepare_never_opens_browser_and_confirmation_opens_once) ... ok
+test_unknown_contact_and_incomplete_message_never_open_browser (test_whatsapp.SendTests.test_unknown_contact_and_incomplete_message_never_open_browser) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 2.159s
+
+OK

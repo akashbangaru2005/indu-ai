@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "checks": [
+    "Old backend shows a restart message and does not request missing contacts or WhatsApp routes",
+    "First launch offers a masked Gemini key field with a local-only fallback",
+    "3D WebGL core renders in the dashboard",
+    "Interface loads with manual-start fallback",
+    "Explicit favicon resolves without a missing-icon request",
+    "Missing key shows an explicit error and Exit releases pending microphone resources",
+    "Exit during startup cancels the pending socket and microphone initialization",
+    "Five consecutive PCM responses finish playback and resume Listening on one socket, microphone and AudioContext",
+    "Voice history and ordinary words such as exit or stop do not terminate the conversation",
+    "Simulated local command results preserve the continuous session",
+    "Interruption stops queued audio and accepts the next question without reconnecting",
+    "Stop speaking drops remaining response audio while leaving the microphone and socket active",
+    "Exit during playback closes audio contexts, stops tracks and sources, closes sockets and wake recognition, and preserves history",
+    "The exact voice command Exit Indu performs the same complete cleanup",
+    "Transport failure has a visible Error state and an explicit Retry action",
+    "Unexpected microphone loss shows Error and releases voice resources",
+    "Contacts persist through the local API and message preview requires explicit confirmation; cancel transmits nothing",
+    "Settings masks and clears API input, avoids browser secret storage, exposes audio device controls and handles simulated validation/disconnect",
+    "A natural-language timer becomes due through the real scheduler, displays an alert and stays dismissed",
+    "No uncaught browser runtime errors",
+    "Desktop and mobile layouts scroll without clipping or horizontal overflow"
+  ],
+  "scope": "Installed headless Edge, real local API and temporary database, fake microphone, native WebAudio playback of synthetic PCM, and simulated Gemini messages. Five consecutive responses verified without reconnecting. No authenticated Gemini call or physical speech-quality test."
+}

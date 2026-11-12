@@ -1,0 +1,10 @@
+[
+  {
+    "check": "frontend-tests",
+    "exit_code": 0
+  },
+  {
+    "check": "frontend-build",
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "checks": [
+    "Frozen backend starts with temporary per-user data",
+    "Bundled React UI and 3D WebGL load on the same origin",
+    "First-launch setup and microphone worklet assets resolve",
+    "Creator and guest affection replies work locally with no API key",
+    "Close Indu app cleanly stops the frozen process"
+  ],
+  "scope": "Installed Edge and frozen Windows bundle, no saved key or real microphone recording."
+}

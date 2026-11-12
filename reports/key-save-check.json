@@ -1,0 +1,7 @@
+{
+  "status": "saved_without_api_request",
+  "storage": "Windows Credential Manager",
+  "method": "backend.setup_key hidden input",
+  "key_in_source_or_installer": false,
+  "remote_key_validation": "not performed, as requested"
+}

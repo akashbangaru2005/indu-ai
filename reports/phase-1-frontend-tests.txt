@@ -1,0 +1,22 @@
+✔ worklet produces 40ms mono PCM16 frames at 16000 Hz input (9.0991ms)
+✔ worklet produces 40ms mono PCM16 frames at 44100 Hz input (12.6853ms)
+✔ worklet produces 40ms mono PCM16 frames at 48000 Hz input (11.9554ms)
+✔ socket resolves only after backend ready (2.3468ms)
+✔ backend configuration errors reject startup with useful details (0.8471ms)
+✔ close before ready settles the pending startup (0.3611ms)
+✔ timeout closes the pending connection (9.6858ms)
+✔ cancellation can close a socket before the upgrade completes (0.436ms)
+✔ stale callbacks cannot affect a replacement session (0.1916ms)
+✔ microphone permission granted after cancellation stops every track (0.2305ms)
+✔ normal microphone startup returns the acquired stream (0.0964ms)
+✔ wake detection uses complete words at the start (0.6019ms)
+✔ knowledge questions containing exit or quit stay in the conversation (0.1864ms)
+✔ voice URL supports TLS and backend overrides (0.1672ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 127.3505

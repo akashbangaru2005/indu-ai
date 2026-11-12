@@ -1,0 +1,27 @@
+[
+  {
+    "check": "backend-tests",
+    "exit_code": 0,
+    "wall_seconds": 3.94
+  },
+  {
+    "check": "frontend-tests",
+    "exit_code": 0,
+    "wall_seconds": 0.189
+  },
+  {
+    "check": "frontend-build",
+    "exit_code": 0,
+    "wall_seconds": 1.159
+  },
+  {
+    "check": "python-dependencies",
+    "exit_code": 0,
+    "wall_seconds": 0.854
+  },
+  {
+    "check": "python-syntax-and-config-json",
+    "exit_code": 0,
+    "python_files": 27
+  }
+]

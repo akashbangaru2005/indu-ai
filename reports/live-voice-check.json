@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "turns": [
+    {
+      "question": "Can you remember my test word mango?",
+      "audio_bytes": 167520,
+      "user_transcript": "Can you remember my test word mango?",
+      "assistant_transcript": "Yes, I will remember that your test word is mango.",
+      "wall_seconds": 7.35
+    },
+    {
+      "question": "What test word did I ask you to remember?",
+      "audio_bytes": 128640,
+      "user_transcript": "What test word did I ask you to remember?",
+      "assistant_transcript": "You asked me to remember the word mango.",
+      "wall_seconds": 6.76
+    },
+    {
+      "question": "What is Python in one short sentence?",
+      "audio_bytes": 282242,
+      "user_transcript": "What is Python in one short sentence?",
+      "assistant_transcript": "Python is a popular, high-level programming language known for its readability and versatility.",
+      "wall_seconds": 9.9
+    },
+    {
+      "question": "Name one real world use of it.",
+      "audio_bytes": 266880,
+      "user_transcript": "Name one real-world use of it.",
+      "assistant_transcript": "Python is widely used in web development to build the back-end of websites and applications.",
+      "wall_seconds": 8.97
+    },
+    {
+      "question": "What is your date of birth? Answer briefly.",
+      "audio_bytes": 149762,
+      "user_transcript": "What is your date of birth?",
+      "assistant_transcript": "My date of birth is 2 September 2007.",
+      "wall_seconds": 6.37
+    }
+  ],
+  "speech_fixture": "windows_offline_voice",
+  "same_frontend_websocket": true,
+  "context_word_recalled": true,
+  "explicit_stop_closed_websocket": true,
+  "scope": "Real local backend and authenticated Gemini Live, synthesized speech input and returned PCM audio. No physical microphone recording or audible speaker-quality check. No desktop or WhatsApp actions."
+}

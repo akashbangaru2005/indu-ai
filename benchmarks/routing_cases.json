@@ -1,0 +1,162 @@
+[
+  {
+    "input": "open youtube",
+    "expected": "browser"
+  },
+  {
+    "input": "launch youtube",
+    "expected": "browser"
+  },
+  {
+    "input": "go to github",
+    "expected": "browser"
+  },
+  {
+    "input": "please open gmail",
+    "expected": "browser"
+  },
+  {
+    "input": "open calculator",
+    "expected": "browser"
+  },
+  {
+    "input": "launch calculator",
+    "expected": "browser"
+  },
+  {
+    "input": "start notepad",
+    "expected": "browser"
+  },
+  {
+    "input": "open file explorer",
+    "expected": "browser"
+  },
+  {
+    "input": "open settings",
+    "expected": "browser"
+  },
+  {
+    "input": "launch vs code",
+    "expected": "browser"
+  },
+  {
+    "input": "open chrome",
+    "expected": "browser"
+  },
+  {
+    "input": "open instagram",
+    "expected": "browser"
+  },
+  {
+    "input": "open snapchat",
+    "expected": "browser"
+  },
+  {
+    "input": "open whatsapp",
+    "expected": "browser"
+  },
+  {
+    "input": "navigate to reddit",
+    "expected": "browser"
+  },
+  {
+    "input": "open linkedin",
+    "expected": "browser"
+  },
+  {
+    "input": "open facebook",
+    "expected": "browser"
+  },
+  {
+    "input": "open google",
+    "expected": "browser"
+  },
+  {
+    "input": "open email",
+    "expected": "browser"
+  },
+  {
+    "input": "send a message to deva Hello YouTube",
+    "expected": "browser"
+  },
+  {
+    "input": "What is YouTube?",
+    "expected": "chat"
+  },
+  {
+    "input": "Explain GitHub pull requests",
+    "expected": "chat"
+  },
+  {
+    "input": "How does Instagram work?",
+    "expected": "chat"
+  },
+  {
+    "input": "Is WhatsApp encrypted?",
+    "expected": "chat"
+  },
+  {
+    "input": "Tell me about Reddit",
+    "expected": "chat"
+  },
+  {
+    "input": "Compare Gmail and email",
+    "expected": "chat"
+  },
+  {
+    "input": "Why use LinkedIn?",
+    "expected": "chat"
+  },
+  {
+    "input": "Who owns Facebook?",
+    "expected": "chat"
+  },
+  {
+    "input": "What is Snapchat?",
+    "expected": "chat"
+  },
+  {
+    "input": "How do I install Visual Studio Code?",
+    "expected": "chat"
+  },
+  {
+    "input": "Do not open youtube",
+    "expected": "chat"
+  },
+  {
+    "input": "Do not open calculator",
+    "expected": "chat"
+  },
+  {
+    "input": "Can you explain how to open github?",
+    "expected": "chat"
+  },
+  {
+    "input": "Write a message deva Hello",
+    "expected": "chat"
+  },
+  {
+    "input": "What happens when I message deva Hello?",
+    "expected": "chat"
+  },
+  {
+    "input": "open youtube and delete files",
+    "expected": "chat"
+  },
+  {
+    "input": "open youtube.com.evil.example",
+    "expected": "chat"
+  },
+  {
+    "input": "Hello Indu",
+    "expected": "chat"
+  },
+  {
+    "input": "What is Python?",
+    "expected": "chat"
+  },
+  {
+    "input": "",
+    "expected": "chat"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "phase": 1,
+  "measured_at_utc": "2026-11-12T16:28:40.025748+00:00",
+  "backend": {
+    "tests": 48,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": true
+  },
+  "frontend": {
+    "tests": 14,
+    "checks": [
+      {
+        "check": "frontend-tests",
+        "exit_code": 0
+      },
+      {
+        "check": "frontend-build",
+        "exit_code": 0
+      }
+    ],
+    "build_config_loader": "native (restricted executor workaround)"
+  },
+  "browser": {
+    "status": "passed",
+    "checks": [
+      "3D WebGL core renders in the dashboard",
+      "Interface loads with manual-start fallback",
+      "Missing API key is visible and microphone tracks stop",
+      "Cancel during startup returns to idle and releases audio",
+      "Knowledge questions containing exit remain active; results display and a completed turn releases audio",
+      "Contacts persist through the local API and message preview requires explicit confirmation; cancel transmits nothing",
+      "No uncaught browser runtime errors",
+      "Desktop and mobile layouts scroll without clipping or horizontal overflow"
+    ],
+    "scope": "Installed headless Edge, real local API without credentials, synthetic microphone, mocked live-ready/response messages. No real Gemini speech."
+  },
+  "npm_known_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "external_verification": {
+    "gemini_authenticated_connection": "not tested: no API key configured",
+    "real_audio": "not tested: synthetic audio only",
+    "whatsapp_account_linking": "not tested: official browser workflow only",
+    "whatsapp_transmission": "disabled: confirmation opens draft, user sends in WhatsApp",
+    "installer": "not implemented in Phase 1"
+  }
+}

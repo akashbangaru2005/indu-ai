@@ -1,0 +1,20 @@
+{
+  "checks": [
+    {
+      "language": "Telugu",
+      "status": "failed",
+      "response": "Gemini returned an invalid or unsuccessful response. Please try again."
+    },
+    {
+      "language": "Hindi",
+      "status": "failed",
+      "response": "Gemini returned an invalid or unsuccessful response. Please try again."
+    },
+    {
+      "language": "English",
+      "status": "failed",
+      "response": "Gemini returned an invalid or unsuccessful response. Please try again."
+    }
+  ],
+  "scope": "Real Gemini text API through the running local backend; script-range detection checks response language, not speech or translation quality. No API key was read. This adds three harmless turns to text history."
+}

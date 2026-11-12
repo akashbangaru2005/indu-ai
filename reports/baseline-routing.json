@@ -1,0 +1,287 @@
+{
+  "description": "Synthetic routing benchmark; all desktop/browser operations mocked. Unused pyautogui import stubbed to evaluate baseline logic. Not an AI model benchmark.",
+  "passed": 21,
+  "total": 40,
+  "cases": [
+    {
+      "input": "open youtube",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.6187000035424717
+    },
+    {
+      "input": "launch youtube",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.020700001186924055
+    },
+    {
+      "input": "go to github",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.0365999985660892
+    },
+    {
+      "input": "please open gmail",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.01300000076298602
+    },
+    {
+      "input": "open calculator",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.11040000026696362
+    },
+    {
+      "input": "launch calculator",
+      "expected": "browser",
+      "actual": "chat",
+      "correct": false,
+      "latency_ms": 0.009999999747378752
+    },
+    {
+      "input": "start notepad",
+      "expected": "browser",
+      "actual": "chat",
+      "correct": false,
+      "latency_ms": 0.007099999493220821
+    },
+    {
+      "input": "open file explorer",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.01590000101714395
+    },
+    {
+      "input": "open settings",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.015400000847876072
+    },
+    {
+      "input": "launch vs code",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.011200001608813182
+    },
+    {
+      "input": "open chrome",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.01080000220099464
+    },
+    {
+      "input": "open instagram",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.007800001185387373
+    },
+    {
+      "input": "open snapchat",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.00670000008540228
+    },
+    {
+      "input": "open whatsapp",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.00920000093174167
+    },
+    {
+      "input": "navigate to reddit",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.008700000762473792
+    },
+    {
+      "input": "open linkedin",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.008099999831756577
+    },
+    {
+      "input": "open facebook",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.007799997547408566
+    },
+    {
+      "input": "open google",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.007200000254670158
+    },
+    {
+      "input": "open email",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.007200000254670158
+    },
+    {
+      "input": "send a message to deva Hello YouTube",
+      "expected": "browser",
+      "actual": "browser",
+      "correct": true,
+      "latency_ms": 0.06690000009257346
+    },
+    {
+      "input": "What is YouTube?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.009399998816661537
+    },
+    {
+      "input": "Explain GitHub pull requests",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.01049999991664663
+    },
+    {
+      "input": "How does Instagram work?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.008299997716676444
+    },
+    {
+      "input": "Is WhatsApp encrypted?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.010600000678095967
+    },
+    {
+      "input": "Tell me about Reddit",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.009400002454640344
+    },
+    {
+      "input": "Compare Gmail and email",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.008800001523923129
+    },
+    {
+      "input": "Why use LinkedIn?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.008600000001024455
+    },
+    {
+      "input": "Who owns Facebook?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.00799999907030724
+    },
+    {
+      "input": "What is Snapchat?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.008099999831756577
+    },
+    {
+      "input": "How do I install Visual Studio Code?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.014199998986441642
+    },
+    {
+      "input": "Do not open youtube",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.007600003300467506
+    },
+    {
+      "input": "Do not open calculator",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.011399999493733048
+    },
+    {
+      "input": "Can you explain how to open github?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.00950000321608968
+    },
+    {
+      "input": "Write a message deva Hello",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.01809999957913533
+    },
+    {
+      "input": "What happens when I message deva Hello?",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.01599999814061448
+    },
+    {
+      "input": "open youtube and delete files",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.01720000000204891
+    },
+    {
+      "input": "open youtube.com.evil.example",
+      "expected": "chat",
+      "actual": "browser",
+      "correct": false,
+      "latency_ms": 0.007700000423938036
+    },
+    {
+      "input": "Hello Indu",
+      "expected": "chat",
+      "actual": "chat",
+      "correct": true,
+      "latency_ms": 0.004999998054699972
+    },
+    {
+      "input": "What is Python?",
+      "expected": "chat",
+      "actual": "chat",
+      "correct": true,
+      "latency_ms": 0.005000001692678779
+    },
+    {
+      "input": "",
+      "expected": "chat",
+      "actual": "chat",
+      "correct": true,
+      "latency_ms": 0.0005999972927384079
+    }
+  ]
+}

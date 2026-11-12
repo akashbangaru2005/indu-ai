@@ -1,0 +1,295 @@
+{
+  "measured_at_utc": "2026-11-12T15:40:01.532934+00:00",
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26340-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+    "dependencies": {
+      "fastapi": "0.141.1",
+      "requests": "2.34.2",
+      "google-genai": "2.34.0",
+      "edge-tts": "7.2.8",
+      "faster-whisper": "1.2.1",
+      "httpx": "0.28.1"
+    }
+  },
+  "scope": "Synthetic local routing and in-process FastAPI TestClient latency. All desktop/browser operations and API model responses mocked. Not end-to-end voice or model latency.",
+  "routing": {
+    "passed": 40,
+    "total": 40,
+    "accuracy_percent": 100.0,
+    "false_actions_on_chat": 0,
+    "latency": {
+      "samples": 1000,
+      "p50_ms": 0.1682,
+      "p95_ms": 0.2499
+    },
+    "cases": [
+      {
+        "input": "open youtube",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "launch youtube",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "go to github",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "please open gmail",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open calculator",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "launch calculator",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "start notepad",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open file explorer",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open settings",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "launch vs code",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open chrome",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open instagram",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open snapchat",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open whatsapp",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "navigate to reddit",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open linkedin",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open facebook",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open google",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "open email",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "send a message to deva Hello YouTube",
+        "expected": "browser",
+        "actual": "browser",
+        "correct": true
+      },
+      {
+        "input": "What is YouTube?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Explain GitHub pull requests",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "How does Instagram work?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Is WhatsApp encrypted?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Tell me about Reddit",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Compare Gmail and email",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Why use LinkedIn?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Who owns Facebook?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "What is Snapchat?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "How do I install Visual Studio Code?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Do not open youtube",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Do not open calculator",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Can you explain how to open github?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Write a message deva Hello",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "What happens when I message deva Hello?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "open youtube and delete files",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "open youtube.com.evil.example",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "Hello Indu",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "What is Python?",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      },
+      {
+        "input": "",
+        "expected": "chat",
+        "actual": "chat",
+        "correct": true
+      }
+    ]
+  },
+  "http_in_process": {
+    "root": {
+      "samples": 100,
+      "p50_ms": 0.9301,
+      "p95_ms": 1.3553
+    },
+    "chat_mocked_model": {
+      "samples": 100,
+      "p50_ms": 1.3698,
+      "p95_ms": 2.0337
+    }
+  },
+  "ollama": {
+    "status": "unavailable",
+    "model": "qwen3:8b",
+    "reason": "HTTPConnectionPool(host='127.0.0.1', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=11434): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))"
+  },
+  "gemini_voice": {
+    "status": "not_measured",
+    "reason": "Requires API credentials, network and real audio."
+  },
+  "speech_accuracy": {
+    "status": "not_measured",
+    "reason": "No labeled audio corpus is supplied."
+  }
+}

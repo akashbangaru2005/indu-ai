@@ -1,0 +1,103 @@
+{
+  "checked_at": "2026-11-12T18:08:14.554240+00:00",
+  "status": "local_checks_passed_with_authenticated_text_unverified",
+  "backend": {
+    "status": "passed",
+    "tests": 68,
+    "log": "continuous-voice-backend-tests.txt"
+  },
+  "frontend": {
+    "status": "passed",
+    "tests": 18,
+    "log": "continuous-voice-frontend-tests.txt"
+  },
+  "browser": {
+    "status": "passed",
+    "checks": 21,
+    "evidence": "browser-smoke.json"
+  },
+  "packaged_browser": {
+    "status": "passed",
+    "checks": 5,
+    "evidence": "packaged-browser-check.json"
+  },
+  "installer": {
+    "status": "passed",
+    "evidence": "installer-check.json"
+  },
+  "os_credentials": {
+    "status": "passed",
+    "evidence": "credential-store-check.json"
+  },
+  "production_build": {
+    "status": "passed",
+    "log": "windows-build.log",
+    "advisory": "Lazy Three.js chunk exceeds 500 kB; not a build failure."
+  },
+  "real_live_baseline": {
+    "status": "passed",
+    "turns": 5,
+    "evidence": "live-voice-check.json",
+    "scope": "Previously running continuous-voice backend; newer native tools/persona configuration is not authenticated-provider validated."
+  },
+  "real_public_sources": {
+    "evidence": "live-information-check.json",
+    "checks": [
+      {
+        "question": "What is the Bitcoin price right now?",
+        "status": "passed"
+      },
+      {
+        "question": "What is today's weather in Hyderabad?",
+        "status": "passed"
+      },
+      {
+        "question": "What is the latest technology news?",
+        "status": "passed"
+      },
+      {
+        "question": "What is the current time in Paris?",
+        "status": "passed"
+      }
+    ]
+  },
+  "real_text_languages": {
+    "status": "not_verified_on_updated_backend",
+    "evidence": "language-check.json",
+    "reason": "Older running backend returned errors and still lacked new settings routes after the restart confirmation. User then prohibited using the replacement key for tests."
+  },
+  "personalization": {
+    "text": "Exact creator/guest replies verified by local API and frozen-app tests without a key.",
+    "voice": "Same rule configured in Gemini instructions; no authenticated check with the replacement key."
+  },
+  "provided_key": {
+    "saved_once": true,
+    "storage": "OS credential service",
+    "api_requests_made_by_agent": false,
+    "evidence": "key-save-check.json"
+  },
+  "limitations": [
+    "Physical microphone/speaker quality and multilingual speech were not measured.",
+    "Provider quotas/network/session limits remain; automatic session resumption is not implemented.",
+    "WhatsApp requires the user's final Send in official Web.",
+    "Reminders need the app/interface running for timely notifications.",
+    "Installer is unsigned and has not been tested on other computers."
+  ],
+  "artifacts": [
+    {
+      "path": "release/InduAI/InduAI.exe",
+      "bytes": 10883080,
+      "sha256": "19aed35dabd43a9ed566beb57e60573c87ea8bdd71720d22f0bc96c92ff067e1"
+    },
+    {
+      "path": "release/InduAI-0.8.0-windows.zip",
+      "bytes": 25983673,
+      "sha256": "37c86b7047d47360b58ba629b6062f2096cbb8be552fe7a93d5e6ce1c2c7e658"
+    },
+    {
+      "path": "release/InduAI-0.8.0-Setup.exe",
+      "bytes": 21853947,
+      "sha256": "ed2ac210376d4860d8c89ab114226647c8c178f8fbbbdbcaac0b907b12def91c"
+    }
+  ]
+}

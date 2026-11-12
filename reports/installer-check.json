@@ -1,0 +1,8 @@
+﻿{
+    "install":  true,
+    "scope":  "Dedicated workspace directory; account registry and Start menu changes skipped. No real Gemini key used.",
+    "installed_app_startup":  true,
+    "uninstall":  true,
+    "user_data_retained":  true,
+    "status":  "passed"
+}

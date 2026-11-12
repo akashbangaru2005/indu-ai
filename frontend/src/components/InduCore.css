@@ -1,0 +1,1386 @@
+/* =========================================
+   INDU GLASS CONTAINER
+   ========================================= */
+
+.indu-container {
+  position: relative;
+
+  width: 430px;
+  height: 470px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 40px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+
+  box-shadow:
+    inset 0 1px 1px
+      rgba(255, 255, 255, 0.16),
+
+    inset 0 -1px 1px
+      rgba(255, 255, 255, 0.04),
+
+    0 30px 100px
+      rgba(0, 0, 0, 0.50);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.6s cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    ),
+
+    box-shadow 0.6s ease;
+}
+
+
+/* =========================================
+   GLASS HIGHLIGHT
+   ========================================= */
+
+.indu-container::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      transparent 35%,
+      transparent 65%,
+      rgba(255, 255, 255, 0.03)
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   ORB
+   ========================================= */
+
+.indu-orb {
+  position: relative;
+
+  width: 250px;
+  height: 250px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================
+   RINGS
+   ========================================= */
+
+.indu-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(
+      150,
+      195,
+      255,
+      0.20
+    );
+
+  pointer-events: none;
+
+  transition:
+    transform 0.5s ease;
+}
+
+.ring-one {
+  width: 145px;
+  height: 145px;
+
+  animation:
+    idleRing 3s ease-in-out infinite;
+}
+
+.ring-two {
+  width: 190px;
+  height: 190px;
+
+  animation:
+    idleRing 3s ease-in-out infinite 0.4s;
+}
+
+.ring-three {
+  width: 235px;
+  height: 235px;
+
+  animation:
+    idleRing 3s ease-in-out infinite 0.8s;
+}
+
+
+/* =========================================
+   CORE
+   ========================================= */
+
+.indu-core {
+  position: relative;
+
+  width: 115px;
+  height: 115px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      rgba(255, 255, 255, 0.42),
+      rgba(255, 255, 255, 0.08) 30%,
+      rgba(80, 130, 255, 0.16) 65%,
+      rgba(10, 20, 50, 0.25)
+    );
+
+  border:
+    1px solid rgba(
+      255,
+      255,
+      255,
+      0.28
+    );
+
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 0 35px
+      rgba(100, 170, 255, 0.30),
+
+    inset 0 0 30px
+      rgba(255, 255, 255, 0.08);
+
+  z-index: 5;
+
+  animation:
+    coreFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================================
+   CORE LIGHT
+   ========================================= */
+
+.core-light {
+  position: absolute;
+
+  width: 170px;
+  height: 170px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(110, 175, 255, 0.25),
+      transparent 65%
+    );
+
+  filter: blur(15px);
+
+  animation:
+    coreGlow 3s ease-in-out infinite;
+}
+
+
+/* =========================================
+   CORE CENTER
+   ========================================= */
+
+.core-center {
+  position: relative;
+
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  border:
+    1px solid rgba(
+      255,
+      255,
+      255,
+      0.20
+    );
+
+  box-shadow:
+    inset 0 0 20px
+      rgba(255, 255, 255, 0.07);
+}
+
+
+.indu-symbol {
+  font-size: 34px;
+
+  font-weight: 600;
+
+  letter-spacing: 3px;
+
+  color:
+    rgba(255, 255, 255, 0.94);
+
+  text-shadow:
+    0 0 20px
+      rgba(140, 190, 255, 0.8);
+}
+
+
+/* =========================================
+   NAME
+   ========================================= */
+
+.indu-name {
+  position: relative;
+
+  font-size: 24px;
+
+  font-weight: 600;
+
+  letter-spacing: 9px;
+
+  text-indent: 9px;
+
+  color:
+    rgba(255, 255, 255, 0.92);
+
+  text-shadow:
+    0 0 25px
+      rgba(120, 175, 255, 0.45);
+}
+
+
+/* =========================================
+   STATUS
+   ========================================= */
+
+.indu-status {
+  margin-top: 12px;
+
+  font-size: 13px;
+
+  letter-spacing: 2px;
+
+  color:
+    rgba(255, 255, 255, 0.50);
+}
+
+
+/* =========================================
+   LISTENING STATE
+   ========================================= */
+
+.indu-container.listening {
+  transform: scale(1.04);
+
+  box-shadow:
+    inset 0 1px 1px
+      rgba(255, 255, 255, 0.18),
+
+    0 30px 100px
+      rgba(0, 0, 0, 0.50),
+
+    0 0 70px
+      rgba(100, 180, 255, 0.18);
+}
+
+.indu-container.listening
+.indu-core {
+  animation:
+    listeningCore 1s ease-in-out infinite;
+}
+
+.indu-container.listening
+.indu-ring {
+  animation:
+    listeningRing 1.4s ease-out infinite;
+}
+
+
+/* =========================================
+   THINKING STATE
+   ========================================= */
+
+.indu-container.thinking
+.indu-core {
+  animation:
+    thinkingCore 1.5s ease-in-out infinite;
+}
+
+.indu-container.thinking
+.ring-one {
+  animation:
+    thinkingRotate 2s linear infinite;
+}
+
+
+/* =========================================
+   SPEAKING STATE
+   ========================================= */
+
+.indu-container.speaking
+.indu-core {
+  animation:
+    speakingCore 0.65s ease-in-out infinite;
+}
+
+.indu-container.speaking
+.indu-ring {
+  animation:
+    speakingRing 0.8s ease-in-out infinite;
+}
+
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes coreFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+@keyframes coreGlow {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+
+@keyframes idleRing {
+
+  0%,
+  100% {
+    opacity: 0.20;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 0.60;
+    transform: scale(1.02);
+  }
+}
+
+
+@keyframes listeningCore {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.14);
+  }
+}
+
+
+@keyframes listeningRing {
+
+  0% {
+    opacity: 0.65;
+    transform: scale(0.70);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.30);
+  }
+}
+
+
+@keyframes thinkingCore {
+
+  0%,
+  100% {
+    transform: scale(0.96);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+
+@keyframes thinkingRotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes speakingCore {
+
+  0%,
+  100% {
+    transform: scale(0.98);
+  }
+
+  50% {
+    transform: scale(1.16);
+  }
+}
+
+
+@keyframes speakingRing {
+
+  0% {
+    opacity: 0.20;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.10);
+  }
+
+  100% {
+    opacity: 0.20;
+    transform: scale(0.85);
+  }
+}
+/* =====================================================
+   INDU GLASS CONTAINER
+   ===================================================== */
+
+.indu-container {
+
+  position: relative;
+
+  width: 430px;
+  height: 470px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 42px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.12),
+      rgba(255,255,255,0.025)
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,0.20);
+
+  backdrop-filter:
+    blur(40px);
+
+  -webkit-backdrop-filter:
+    blur(40px);
+
+  box-shadow:
+
+    inset 0 1px 1px
+    rgba(255,255,255,0.18),
+
+    inset 0 -1px 1px
+    rgba(255,255,255,0.04),
+
+    0 30px 100px
+    rgba(0,0,0,0.55);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.5s
+    cubic-bezier(.16,1,.3,1);
+}
+
+
+/* =====================================================
+   GLASS REFLECTION
+   ===================================================== */
+
+.indu-container::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.10),
+      transparent 35%,
+      transparent 70%,
+      rgba(255,255,255,0.03)
+    );
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   ORB
+   ===================================================== */
+
+.indu-orb {
+
+  position: relative;
+
+  width: 250px;
+  height: 250px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =====================================================
+   RINGS
+   ===================================================== */
+
+.ring {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(130,190,255,0.25);
+
+  pointer-events: none;
+}
+
+
+.ring-one {
+
+  width: 150px;
+  height: 150px;
+
+  animation:
+    idleRing 3s
+    ease-in-out
+    infinite;
+}
+
+
+.ring-two {
+
+  width: 195px;
+  height: 195px;
+
+  animation:
+    idleRing 3s
+    ease-in-out
+    infinite
+    0.4s;
+}
+
+
+.ring-three {
+
+  width: 235px;
+  height: 235px;
+
+  animation:
+    idleRing 3s
+    ease-in-out
+    infinite
+    0.8s;
+}
+
+
+/* =====================================================
+   CORE
+   ===================================================== */
+
+.indu-core {
+
+  position: relative;
+
+  width: 115px;
+  height: 115px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      rgba(255,255,255,0.48),
+      rgba(255,255,255,0.08) 30%,
+      rgba(70,130,255,0.20) 65%,
+      rgba(10,20,50,0.30)
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,0.30);
+
+  box-shadow:
+
+    0 0 35px
+    rgba(100,170,255,0.35),
+
+    inset 0 0 30px
+    rgba(255,255,255,0.08);
+
+  backdrop-filter:
+    blur(20px);
+
+  z-index: 5;
+
+  animation:
+    coreFloat 4s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   CORE GLOW
+   ===================================================== */
+
+.core-glow {
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(100,180,255,0.28),
+      transparent 65%
+    );
+
+  filter:
+    blur(18px);
+
+  animation:
+    coreGlow 3s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   CENTER
+   ===================================================== */
+
+.core-center {
+
+  position: relative;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.20);
+
+  box-shadow:
+    inset 0 0 20px
+    rgba(255,255,255,0.08);
+}
+
+
+.core-center span {
+
+  font-size: 34px;
+
+  font-weight: 600;
+
+  letter-spacing: 3px;
+
+  color:
+    rgba(255,255,255,0.95);
+
+  text-shadow:
+    0 0 25px
+    rgba(130,190,255,0.85);
+}
+
+
+/* =====================================================
+   NAME
+   ===================================================== */
+
+.indu-name {
+
+  margin: 0;
+
+  font-size: 25px;
+
+  font-weight: 600;
+
+  letter-spacing: 10px;
+
+  text-indent: 10px;
+
+  color:
+    rgba(255,255,255,0.94);
+
+  text-shadow:
+    0 0 25px
+    rgba(120,180,255,0.45);
+}
+
+
+/* =====================================================
+   STATUS
+   ===================================================== */
+
+.indu-status {
+
+  margin:
+
+    10px 0 0;
+
+  font-size: 13px;
+
+  letter-spacing: 2px;
+
+  color:
+    rgba(255,255,255,0.50);
+}
+
+
+/* =====================================================
+   LISTENING
+   ===================================================== */
+
+.indu-container.listening {
+
+  transform:
+    scale(1.05);
+
+  box-shadow:
+
+    inset 0 1px 1px
+    rgba(255,255,255,0.20),
+
+    0 30px 100px
+    rgba(0,0,0,0.55),
+
+    0 0 80px
+    rgba(90,180,255,0.22);
+}
+
+
+.indu-container.listening
+.indu-core {
+
+  animation:
+    listeningCore 1s
+    ease-in-out
+    infinite;
+}
+
+
+.indu-container.listening
+.ring {
+
+  animation:
+    listeningRing 1.4s
+    ease-out
+    infinite;
+}
+
+
+/* =====================================================
+   THINKING
+   ===================================================== */
+
+.indu-container.thinking
+.indu-core {
+
+  animation:
+    thinkingCore 1.5s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   SPEAKING
+   ===================================================== */
+
+.indu-container.speaking
+.indu-core {
+
+  animation:
+    speakingCore .65s
+    ease-in-out
+    infinite;
+}
+
+
+.indu-container.speaking
+.ring {
+
+  animation:
+    speakingRing .8s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+
+@keyframes coreFloat {
+
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+@keyframes coreGlow {
+
+  0%,100% {
+    opacity: .4;
+    transform: scale(.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+
+@keyframes idleRing {
+
+  0%,100% {
+    opacity: .20;
+    transform: scale(.94);
+  }
+
+  50% {
+    opacity: .60;
+    transform: scale(1.03);
+  }
+}
+
+
+@keyframes listeningCore {
+
+  0%,100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+
+@keyframes listeningRing {
+
+  0% {
+    opacity: .7;
+    transform: scale(.7);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+
+
+@keyframes thinkingCore {
+
+  0%,100% {
+    transform: scale(.96);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+
+@keyframes speakingCore {
+
+  0%,100% {
+    transform: scale(.98);
+  }
+
+  50% {
+    transform: scale(1.16);
+  }
+}
+
+
+@keyframes speakingRing {
+
+  0% {
+    opacity: .2;
+    transform: scale(.85);
+  }
+
+  50% {
+    opacity: .75;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: .2;
+    transform: scale(.85);
+  }
+}
+/* =====================================================
+   INDU WAKE SYSTEM
+   ===================================================== */
+
+.wake-pulse {
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 120px;
+  height: 120px;
+
+  margin-left: -60px;
+  margin-top: -110px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(130, 200, 255, 0);
+
+  pointer-events: none;
+
+  opacity: 0;
+
+}
+
+
+/* =====================================================
+   WAKE ACTIVE
+   ===================================================== */
+
+.wake-active {
+
+  animation:
+    wakeContainer
+    1.4s
+    cubic-bezier(.16,1,.3,1);
+}
+
+
+/* =====================================================
+   CORE WAKE
+   ===================================================== */
+
+.wake-active
+.indu-core {
+
+  animation:
+    wakeCore
+    1.2s
+    cubic-bezier(.16,1,.3,1);
+
+  z-index: 10;
+
+}
+
+
+/* =====================================================
+   RING WAKE
+   ===================================================== */
+
+.wake-active
+.ring-one {
+
+  animation:
+    wakeRing
+    1.1s
+    ease-out;
+}
+
+
+.wake-active
+.ring-two {
+
+  animation:
+    wakeRing
+    1.2s
+    ease-out
+    .08s;
+}
+
+
+.wake-active
+.ring-three {
+
+  animation:
+    wakeRing
+    1.3s
+    ease-out
+    .16s;
+}
+
+
+/* =====================================================
+   WAKE PULSES
+   ===================================================== */
+
+.wake-active
+.pulse-one {
+
+  animation:
+    wakePulse
+    1.2s
+    ease-out;
+}
+
+
+.wake-active
+.pulse-two {
+
+  animation:
+    wakePulse
+    1.2s
+    ease-out
+    .2s;
+}
+
+
+.wake-active
+.pulse-three {
+
+  animation:
+    wakePulse
+    1.2s
+    ease-out
+    .4s;
+}
+
+
+/* =====================================================
+   WAKE CONTAINER
+   ===================================================== */
+
+@keyframes wakeContainer {
+
+  0% {
+
+    transform:
+      scale(.92);
+
+  }
+
+  35% {
+
+    transform:
+      scale(1.04);
+
+  }
+
+  65% {
+
+    transform:
+      scale(1.01);
+
+  }
+
+  100% {
+
+    transform:
+      scale(1);
+
+  }
+
+}
+
+
+/* =====================================================
+   WAKE CORE
+   ===================================================== */
+
+@keyframes wakeCore {
+
+  0% {
+
+    transform:
+      scale(.65);
+
+    opacity: .35;
+
+    filter:
+      blur(8px);
+
+  }
+
+  25% {
+
+    transform:
+      scale(1.30);
+
+    opacity: 1;
+
+    filter:
+      blur(0);
+
+  }
+
+  55% {
+
+    transform:
+      scale(1.12);
+
+  }
+
+  100% {
+
+    transform:
+      scale(1);
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* =====================================================
+   WAKE RING
+   ===================================================== */
+
+@keyframes wakeRing {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      scale(.45);
+
+  }
+
+  25% {
+
+    opacity: .85;
+
+  }
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      scale(1.45);
+
+  }
+
+}
+
+
+/* =====================================================
+   WAKE PULSE
+   ===================================================== */
+
+@keyframes wakePulse {
+
+  0% {
+
+    opacity: .8;
+
+    width: 80px;
+    height: 80px;
+
+    margin-left: -40px;
+    margin-top: -70px;
+
+    border-color:
+      rgba(130,200,255,.75);
+
+    box-shadow:
+      0 0 30px
+      rgba(100,180,255,.40);
+
+  }
+
+  100% {
+
+    opacity: 0;
+
+    width: 360px;
+    height: 360px;
+
+    margin-left: -180px;
+    margin-top: -210px;
+
+    border-color:
+      rgba(130,200,255,0);
+
+    box-shadow:
+      0 0 100px
+      rgba(100,180,255,0);
+
+  }
+
+}
+
+
+/* =====================================================
+   WAKING STATUS
+   ===================================================== */
+
+.indu-container.waking
+.indu-status {
+
+  color:
+    rgba(170,215,255,.95);
+
+  text-shadow:
+    0 0 15px
+    rgba(100,190,255,.65);
+
+}
+
+
+/* =====================================================
+   LISTENING ENHANCEMENT
+   ===================================================== */
+
+.indu-container.listening {
+
+  box-shadow:
+
+    inset 0 1px 1px
+    rgba(255,255,255,.20),
+
+    0 30px 100px
+    rgba(0,0,0,.55),
+
+    0 0 100px
+    rgba(80,180,255,.30);
+
+}
+
+
+.indu-container.listening
+.indu-core {
+
+  animation:
+    listeningCore
+    1s
+    ease-in-out
+    infinite;
+
+}
+
+
+.indu-container.listening
+.ring {
+
+  animation:
+    listeningRing
+    1.4s
+    ease-out
+    infinite;
+
+}
