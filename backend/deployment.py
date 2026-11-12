@@ -14,8 +14,11 @@ def is_cloud():
 
 
 def allowed_origins():
-    defaults = "" if is_cloud() else "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
-    origins = [value.strip().rstrip("/") for value in os.environ.get("INDU_ALLOWED_ORIGINS", defaults).split(",") if value.strip()]
+    defaults = "https://indu-ai.vercel.app" if is_cloud() else "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
+    configured = os.environ.get("INDU_ALLOWED_ORIGINS", "").strip() or defaults
+    origins = [value.strip().rstrip("/") for value in configured.split(",") if value.strip()]
+    if any("*" in origin for origin in origins):
+        raise ValueError("INDU_ALLOWED_ORIGINS must use explicit origins, without wildcards.")
     if is_cloud() and os.environ.get("RENDER_EXTERNAL_HOSTNAME"):
         origins.append("https://" + os.environ["RENDER_EXTERNAL_HOSTNAME"].strip())
     return list(dict.fromkeys(origins))

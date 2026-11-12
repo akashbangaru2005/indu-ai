@@ -88,9 +88,11 @@ async def lifespan(app):
 
 
 app = FastAPI(title="Indu AI Assistant", version=VERSION, lifespan=lifespan)
-app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts())
+# No cookie-based authentication/session is used by the browser client.
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS,
-                   allow_credentials=False, allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["Content-Type"])
+                   allow_credentials=False, allow_methods=["*"], allow_headers=["*"])
+# Last added runs first: validate Host even when CORS handles OPTIONS directly.
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts())
 
 
 # CORS does not block execution of simple cross-origin POSTs or WebSockets.

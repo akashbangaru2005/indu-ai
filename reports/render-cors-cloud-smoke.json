@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "python": "3.13.5",
+  "checks": [
+    "backend.main imports with Google SDK present and local hardware/GUI imports blocked",
+    "Cloud health, Render/custom host routing and explicit frontend CORS work",
+    "Vercel OPTIONS on root/health allow all standard methods and requested headers; GET returns 200 JSON with Access-Control-Allow-Origin exactly https://indu-ai.vercel.app",
+    "Untrusted origins and preflight Hosts are rejected; handled 404/422/409 errors retain CORS headers for Vercel",
+    "Root and health accept production/local hosts, reject untrusted/lookalike hosts and cannot be bypassed with X-Forwarded-Host",
+    "Desktop commands, server microphone/playback, OS credentials, WhatsApp browser launches and app shutdown are disabled before access",
+    "Optional network MP3 generation still serves browser audio while all server playback paths stay disabled",
+    "Cloud contacts and reminder storage remain available",
+    "Cloud Gemini Live bridge streams browser PCM in and provider PCM out for five turns on one mocked session, then cleans up on stop",
+    "No pygame, sounddevice, pyautogui, keyring, Whisper, Playwright, winreg or pyttsx3 import was attempted",
+    "Real Uvicorn returns 200 with the exact Vercel CORS header for OPTIONS/GET on root/health and accepts a Vercel voice WebSocket with the production Host"
+  ],
+  "scope": "Cloud policy, actual ASGI/Uvicorn startup and WebSocket upgrades; multi-turn Gemini responses are mocked. No real API key or hardware is used."
+}

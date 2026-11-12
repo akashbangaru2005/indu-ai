@@ -55,6 +55,17 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(self.client.post("/api/chat", json={"message": ""}).status_code, 422)
         self.assertEqual(self.client.post("/api/chat", json={"message": "x" * 10001}).status_code, 422)
 
+    def test_local_development_cors_preflight_and_get(self):
+        for origin in ("http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:4173", "http://127.0.0.1:4173"):
+            for path in ("/", "/health"):
+                with self.subTest(origin=origin, path=path):
+                    response = self.client.options(path, headers={"Origin":origin, "Access-Control-Request-Method":"GET", "Access-Control-Request-Headers":"content-type"})
+                    self.assertEqual(response.status_code, 200)
+                    self.assertEqual(response.headers["access-control-allow-origin"], origin)
+                    response = self.client.get(path, headers={"Origin":origin})
+                    self.assertEqual(response.status_code, 200)
+                    self.assertEqual(response.headers["access-control-allow-origin"], origin)
+
     def test_backend_imports_without_optional_voice_packages(self):
         script = """
 import importlib.abc, sys

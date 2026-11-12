@@ -1,0 +1,53 @@
+{
+  "phase": "before deployment",
+  "frontend": "https://indu-ai.vercel.app",
+  "backend": "https://indu-ai.onrender.com",
+  "results": [
+    {
+      "method": "OPTIONS",
+      "path": "/",
+      "status": 200,
+      "cors_headers": {
+        "access-control-allow-headers": "Accept, Accept-Language, Content-Language, Content-Type",
+        "access-control-allow-methods": "GET, POST, PUT, DELETE",
+        "access-control-allow-origin": "https://indu-ai.vercel.app",
+        "access-control-max-age": "600",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Request-Private-Network, Accept-Encoding"
+      },
+      "body": "OK"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "cors_headers": {
+        "access-control-allow-origin": "https://indu-ai.vercel.app",
+        "vary": "Origin, Accept-Encoding"
+      },
+      "body": "{\"name\":\"Indu\",\"status\":\"online\",\"version\":\"0.8.0\",\"api_contract\":1,\"features\":[\"contacts\",\"whatsapp_previews\",\"gemini_text\",\"gemini_live\",\"continuous_voice\",\"secure_setup\",\"reminders\",\"live_information\",\"desktop_launch\"],\"message\":\"Indu AI backend is running.\"}"
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/health",
+      "status": 200,
+      "cors_headers": {
+        "access-control-allow-headers": "Accept, Accept-Language, Content-Language, Content-Type",
+        "access-control-allow-methods": "GET, POST, PUT, DELETE",
+        "access-control-allow-origin": "https://indu-ai.vercel.app",
+        "access-control-max-age": "600",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Request-Private-Network, Accept-Encoding"
+      },
+      "body": "OK"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200,
+      "cors_headers": {
+        "access-control-allow-origin": "https://indu-ai.vercel.app",
+        "vary": "Origin, Accept-Encoding"
+      },
+      "body": "{\"status\":\"configured\",\"deployment_mode\":\"local\",\"capabilities\":{\"desktop_control\":true,\"backend_microphone\":true,\"backend_audio_playback\":true,\"browser_audio_streaming\":true},\"version\":\"0.8.0\",\"api_contract\":1,\"features\":[\"contacts\",\"whatsapp_previews\",\"gemini_text\",\"gemini_live\",\"continuous_voice\",\"secure_setup\",\"reminders\",\"live_information\",\"desktop_launch\"],\"assistant\":\"Indu\",\"router\":true,\"brain\":true,\"gemini\":{\"provider\":\"gemini\",\"model\":\"gemini-3.8-flash\",\"configured\":true,\"last_error\":n"
+    }
+  ]
+}

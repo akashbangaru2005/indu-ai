@@ -58,11 +58,13 @@ Set these environment variables in the Render dashboard:
 ```text
 INDU_DEPLOYMENT_MODE=cloud
 GEMINI_API_KEY=<set the secret in Render, never in source>
-INDU_ALLOWED_ORIGINS=https://your-frontend.example
+INDU_ALLOWED_ORIGINS=https://indu-ai.vercel.app
 INDU_DATA_DIR=/tmp/indu
 ```
 
-`INDU_ALLOWED_ORIGINS` accepts comma-separated exact frontend origins, without URL paths. Set the frontend's `VITE_API_URL` to the HTTPS Render backend URL and rebuild that frontend. The existing client derives the corresponding `wss://.../ws/voice` URL. Render supports WebSockets on the same web service ([WebSocket guidance](https://render.com/docs/websocket)).
+`INDU_ALLOWED_ORIGINS` accepts comma-separated exact frontend origins, without URL paths. Whitespace, trailing slashes and duplicates are removed; wildcard origins are rejected. A non-empty setting replaces the defaults. If unset or blank, cloud mode allows `https://indu-ai.vercel.app`; local mode retains localhost and 127.0.0.1 on ports 5173 and 4173. Set the Vercel frontend's `VITE_API_URL=https://indu-ai.onrender.com` and rebuild that frontend. The existing client derives the corresponding `wss://.../ws/voice` URL. Render supports WebSockets on the same web service ([WebSocket guidance](https://render.com/docs/websocket)).
+
+CORS and the HTTP/WebSocket origin checks use this same allowlist. OPTIONS preflights allow all methods and headers for approved origins; credentials remain disabled because the client has no cookie-based authentication/session. TrustedHostMiddleware validates the backend hostname before CORS handles preflight. In an existing Render service, set the two environment values `INDU_DEPLOYMENT_MODE=cloud` and `INDU_ALLOWED_ORIGINS=https://indu-ai.vercel.app` explicitly, then redeploy. `/health` should report `deployment_mode: cloud`.
 
 Render's `RENDER_EXTERNAL_HOSTNAME` is automatically accepted as an HTTP/WebSocket host and same-origin HTTPS frontend. For a custom backend domain, additionally set `INDU_ALLOWED_HOSTS=api.example.com`; frontend CORS origins and backend hostnames are separate settings. The hostname comes from Render's [built-in environment variables](https://render.com/docs/environment-variables).
 

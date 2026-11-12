@@ -48,7 +48,23 @@ class DeploymentTests(unittest.TestCase):
 
     def test_cloud_has_no_implicit_local_browser_origins(self):
         with patch.dict(os.environ, {"INDU_DEPLOYMENT_MODE":"cloud"}, clear=True):
-            self.assertEqual(allowed_origins(), [])
+            self.assertEqual(allowed_origins(), ["https://indu-ai.vercel.app"])
+
+    def test_origin_environment_is_parsed_and_overrides_defaults(self):
+        with patch.dict(os.environ, {"INDU_DEPLOYMENT_MODE":"cloud", "INDU_ALLOWED_ORIGINS":" https://custom.example/ , , http://localhost:5173/ , https://custom.example "}, clear=True):
+            self.assertEqual(allowed_origins(), ["https://custom.example", "http://localhost:5173"])
+
+    def test_blank_origin_setting_retains_mode_defaults(self):
+        for mode, origin in [("cloud", "https://indu-ai.vercel.app"), ("local", "http://localhost:5173")]:
+            with self.subTest(mode=mode), patch.dict(os.environ, {"INDU_DEPLOYMENT_MODE":mode, "INDU_ALLOWED_ORIGINS":"  "}, clear=True):
+                self.assertIn(origin, allowed_origins())
+
+    def test_wildcard_origins_are_rejected(self):
+        for mode in ("cloud", "local"):
+            for origin in ("*", "https://*.vercel.app"):
+                with self.subTest(mode=mode, origin=origin), patch.dict(os.environ, {"INDU_DEPLOYMENT_MODE":mode, "INDU_ALLOWED_ORIGINS":origin}, clear=True):
+                    with self.assertRaisesRegex(ValueError, "without wildcards"):
+                        allowed_origins()
 
     def test_invalid_mode_fails_clearly(self):
         with patch.dict(os.environ, {"INDU_DEPLOYMENT_MODE":"cluod"}, clear=True):

@@ -67,11 +67,15 @@ def run_http_server(checks):
                         raise AssertionError("Cloud Uvicorn health check timed out")
                     assert response.json()["deployment_mode"] == "cloud"
                     for path in ("/", "/health"):
-                        assert client.get(address + path, headers={"Host":"indu-ai.onrender.com"}).status_code == 200
+                        headers = {"Host":"indu-ai.onrender.com", "Origin":"https://indu-ai.vercel.app"}
+                        response = client.options(address + path, headers={**headers, "Access-Control-Request-Method":"GET", "Access-Control-Request-Headers":"content-type"})
+                        assert response.status_code == 200 and response.headers["access-control-allow-origin"] == headers["Origin"]
+                        response = client.get(address + path, headers=headers)
+                        assert response.status_code == 200 and response.headers["access-control-allow-origin"] == headers["Origin"]
                 connection = socket.create_connection(("127.0.0.1", port), timeout=5)
-                with connect(f"ws://indu-ai.onrender.com:{port}/ws/voice", sock=connection, origin="https://frontend.example", proxy=None, open_timeout=5) as websocket:
+                with connect(f"ws://indu-ai.onrender.com:{port}/ws/voice", sock=connection, origin="https://indu-ai.vercel.app", proxy=None, open_timeout=5) as websocket:
                     assert json.loads(websocket.recv())["type"] == "error"  # key intentionally absent
-                checks.append("Real Uvicorn serves root/health and accepts a voice WebSocket with the production Host header")
+                checks.append("Real Uvicorn returns 200 with the exact Vercel CORS header for OPTIONS/GET on root/health and accepts a Vercel voice WebSocket with the production Host")
             finally:
                 if process.poll() is None:
                     try:
@@ -98,7 +102,7 @@ def main():
         os.environ.pop("GEMINI_API_KEY", None)
         os.environ.update(INDU_DEPLOYMENT_MODE="cloud", INDU_DATA_DIR=folder,
                           INDU_DATABASE=str(Path(folder) / "test.db"), INDU_DESKTOP="1",
-                          INDU_ALLOWED_ORIGINS="https://frontend.example", INDU_ALLOWED_HOSTS="api.example.test",
+                          INDU_ALLOWED_ORIGINS=" https://indu-ai.vercel.app/ , https://frontend.example , ", INDU_ALLOWED_HOSTS="api.example.test",
                           RENDER_EXTERNAL_HOSTNAME="indu-test.onrender.com")
         from fastapi.testclient import TestClient
         from starlette.websockets import WebSocketDisconnect
@@ -121,6 +125,31 @@ def main():
             preflight = client.options("/api/chat", headers={"Origin":"https://frontend.example", "Access-Control-Request-Method":"POST", "Access-Control-Request-Headers":"Content-Type"})
             assert preflight.status_code == 200 and preflight.headers["access-control-allow-origin"] == "https://frontend.example"
             checks.append("Cloud health, Render/custom host routing and explicit frontend CORS work")
+            headers = {"Host":"indu-ai.onrender.com", "Origin":"https://indu-ai.vercel.app"}
+            for path in ("/", "/health"):
+                for method in ("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"):
+                    preflight = client.options(path, headers={**headers, "Access-Control-Request-Method":method, "Access-Control-Request-Headers":"content-type, x-request-id"})
+                    assert preflight.status_code == 200
+                    assert preflight.headers["access-control-allow-origin"] == headers["Origin"]
+                    assert "x-request-id" in preflight.headers["access-control-allow-headers"]
+                    assert "access-control-allow-credentials" not in preflight.headers
+                    assert "Origin" in preflight.headers["vary"]
+                response = client.get(path, headers=headers)
+                assert response.status_code == 200 and isinstance(response.json(), dict)
+                assert response.headers["access-control-allow-origin"] == headers["Origin"]
+            checks.append("Vercel OPTIONS on root/health allow all standard methods and requested headers; GET returns 200 JSON with Access-Control-Allow-Origin exactly https://indu-ai.vercel.app")
+            for origin in ("https://attacker.example", "https://indu-ai.vercel.app.attacker.example", "null"):
+                preflight = client.options("/", headers={**headers, "Origin":origin, "Access-Control-Request-Method":"GET"})
+                assert preflight.status_code == 403 and "access-control-allow-origin" not in preflight.headers
+            preflight = client.options("/", headers={**headers, "Host":"attacker.example", "Access-Control-Request-Method":"GET"})
+            assert preflight.status_code == 400  # Host validation runs before CORS can answer.
+            for response, status in (
+                (client.get("/missing-cors-route", headers=headers), 404),
+                (client.post("/api/chat", json={"message":""}, headers=headers), 422),
+                (client.post("/api/listen", headers=headers), 409),
+            ):
+                assert response.status_code == status and response.headers["access-control-allow-origin"] == headers["Origin"]
+            checks.append("Untrusted origins and preflight Hosts are rejected; handled 404/422/409 errors retain CORS headers for Vercel")
             for hostname in ("indu-ai.onrender.com", "indu-ai.onrender.com:443", "localhost", "127.0.0.1"):
                 for path in ("/", "/health"):
                     response = client.get(path, headers={"Host":hostname})
@@ -194,7 +223,7 @@ def main():
                     provider.closed = True
             fake = NS(aio=NS(live=NS(connect=connect)), close=Mock())
             with patch.object(main_api, "GEMINI_API_KEY", "cloud-fixture-not-a-real-key"), patch.object(main_api, "gemini_client", fake):
-                with client.websocket_connect("/ws/voice", headers={"Host":"indu-ai.onrender.com", "Origin":"https://frontend.example"}) as websocket:
+                with client.websocket_connect("/ws/voice", headers={"Host":"indu-ai.onrender.com", "Origin":"https://indu-ai.vercel.app"}) as websocket:
                     assert websocket.receive_json()["type"] == "ready"
                     for turn in range(5):
                         websocket.send_bytes(b"\x00\x00" * 32)
