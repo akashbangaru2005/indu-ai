@@ -34,12 +34,12 @@ export default function SettingsPanel({open, welcome, onClose, onConfigured, aud
     <div className="panel-content">
       <p className="section-intro">Connect your own Google Gemini key for voice and text. Get one in <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Google AI Studio</a>.</p>
       <p role="status">{settings?.configured ? settings.verified ? "Gemini connection validated" : "Gemini configured" : "Gemini is not connected"}</p>
-      <form className="contact-form" onSubmit={event => {event.preventDefault(); void act(() => api("/api/settings/gemini", {method:"PUT", body:{api_key:key}}));}}>
+      {settings?.credential_management === "environment" ? <p className="field-hint">Gemini credentials are managed in the cloud server's environment settings. Browser microphone streaming remains available when Gemini is configured.</p> : <form className="contact-form" onSubmit={event => {event.preventDefault(); void act(() => api("/api/settings/gemini", {method:"PUT", body:{api_key:key}}));}}>
         <label>Gemini API key<input type={show ? "text" : "password"} value={key} onChange={event => setKey(event.target.value)} required minLength={20} maxLength={512} autoComplete="off" spellCheck={false} disabled={busy || voiceActive}/></label>
         <div className="form-actions"><button className="subtle-button" type="button" onClick={() => setShow(!show)}>{show ? "Hide key" : "Show key"}</button><button className="primary-button" disabled={busy || voiceActive || !key.trim()}>{busy ? "Validating…" : "Validate and save"}</button></div>
         <p className="field-hint">Saved in your operating system's credential store. Validation sends a small test request to Gemini. Text and audio you submit are sent to Google.</p>
         {settings?.configured && <button className="subtle-button" type="button" disabled={busy || voiceActive} onClick={() => void act(() => api("/api/settings/gemini", {method:"DELETE"}))}>Disconnect Gemini</button>}
-      </form>
+      </form>}
       {voiceActive && <p className="field-hint">Exit the voice conversation before changing the key or audio devices.</p>}
       <div className="contact-form">
         <h3>Audio devices</h3>

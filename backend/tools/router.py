@@ -13,6 +13,7 @@ from .whatsapp import WhatsAppService
 from .reminders import ReminderStore
 from .desktop import EXECUTABLES, SETTINGS, launch_registered, open_known_folder
 from .live_info import LiveInformation
+from ..deployment import is_cloud
 
 URLS = {
     "youtube": "https://www.youtube.com", "instagram": "https://www.instagram.com",
@@ -59,9 +60,13 @@ class InduCommandRouter:
         return {"type": "browser", "success": success, "response": response}
 
     def open_url(self, url: str) -> bool:
+        if is_cloud():
+            return False
         return bool(webbrowser.open(url))
 
     def open_windows_app(self, app_name: str) -> bool:
+        if is_cloud():
+            return False
         if app_name in EXECUTABLES:
             return launch_registered(app_name)
         if os.name != "nt" or app_name not in DESKTOP_APPS:
@@ -73,6 +78,8 @@ class InduCommandRouter:
             return False
 
     def open_vscode(self) -> bool:
+        if is_cloud():
+            return False
         locations = (("LOCALAPPDATA", "Programs/Microsoft VS Code"), ("ProgramFiles", "Microsoft VS Code"))
         for variable, folder in locations:
             base = os.environ.get(variable)
@@ -88,7 +95,7 @@ class InduCommandRouter:
         return False
 
     def open_settings(self, name="settings") -> bool:
-        if os.name != "nt":
+        if is_cloud() or os.name != "nt":
             return False
         try:
             os.startfile(SETTINGS[name])
@@ -143,6 +150,8 @@ class InduCommandRouter:
         match = OPEN_PATTERN.fullmatch(normalized)
         target = match[1] if match else normalized.rstrip(".!?")
         target = ALIASES.get(target, target)
+        if is_cloud() and target in {*URLS, *DESKTOP_APPS, *SETTINGS, "downloads", "vscode"}:
+            return self._result("Desktop and browser launch commands require Indu running locally on your computer. They are disabled on the cloud server.", False)
         if target in URLS:
             success, name = self.open_url(URLS[target]), target.title()
         elif target == "vscode":

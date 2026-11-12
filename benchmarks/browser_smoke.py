@@ -40,6 +40,7 @@ def main():
     backend_url = f"http://127.0.0.1:{backend_port}"
     environment = dict(os.environ)
     environment.pop("GEMINI_API_KEY", None)
+    environment["INDU_DEPLOYMENT_MODE"] = "local"
     environment["INDU_DISABLE_CREDENTIAL_STORE"] = "1"
     environment["INDU_ALLOWED_ORIGINS"] = frontend_url
     environment["VITE_API_URL"] = backend_url
@@ -387,6 +388,18 @@ def main():
             page.get_by_role("button", name="Close settings", exact=True).click()
             page.unroute("**/api/settings/gemini", fake_setup)
             checks.append("Settings masks and clears API input, avoids browser secret storage, exposes audio device controls and handles simulated validation/disconnect")
+
+            def cloud_setup(route):
+                route.fulfill(json={"configured":True, "verified":False, "credential_management":"environment"})
+            page.route("**/api/settings/gemini", cloud_setup)
+            page.get_by_role("button", name="Settings", exact=True).click()
+            page.get_by_text("Gemini credentials are managed in the cloud server's environment settings.", exact=False).wait_for()
+            assert page.get_by_label("Gemini API key", exact=True).count() == 0
+            page.get_by_label("Microphone", exact=True).wait_for()
+            page.get_by_label("Speaker", exact=True).wait_for()
+            page.get_by_role("button", name="Close settings", exact=True).click()
+            page.unroute("**/api/settings/gemini", cloud_setup)
+            checks.append("Cloud settings show server-managed credentials while preserving browser audio device selection")
 
             composer = page.get_by_role("textbox", name="Message Indu", exact=True)
             composer.fill("Set a timer for 1 second")

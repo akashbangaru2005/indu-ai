@@ -10,6 +10,7 @@ from urllib.parse import urlencode
 from uuid import uuid4
 
 from .contacts import message_fingerprint
+from ..deployment import is_cloud
 
 
 class WhatsAppService:
@@ -21,10 +22,16 @@ class WhatsAppService:
                        "detail": "Link your personal account in official WhatsApp Web."}
 
     def status(self):
+        if is_cloud():
+            return {"state":"disabled", "qr":None, "installed":False, "mode":"cloud",
+                    "account_connection_verified":False, "direct_sending":False,
+                    "detail":"WhatsApp Web linking and draft opening require the local desktop app."}
         return {**self._state, "installed": True, "mode": "official_whatsapp_web",
                 "account_connection_verified": False, "direct_sending": False}
 
     async def connect(self):
+        if is_cloud():
+            raise RuntimeError("WhatsApp Web linking requires the local desktop app; the cloud server cannot open your browser.")
         if not await asyncio.to_thread(webbrowser.open, "https://web.whatsapp.com"):
             raise RuntimeError("Could not open WhatsApp Web. Open web.whatsapp.com in your browser.")
         self._state.update(state="web_opened", detail="Scan the QR code in WhatsApp Web. Indu cannot verify account connection or delivery.")
@@ -90,6 +97,8 @@ class WhatsAppService:
                                  "mode": "whatsapp_web_draft"}}
 
     async def confirm_preview(self, identifier):
+        if is_cloud():
+            raise ValueError("Opening a WhatsApp draft requires the local desktop app. No browser was opened and no message was sent.")
         if identifier in self.confirmed:
             return self.result(self.contacts.get_send(self.confirmed[identifier]))
         preview = self.previews.pop(identifier, None)

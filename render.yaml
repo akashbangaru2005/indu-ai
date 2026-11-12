@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: indu-ai-backend
+    runtime: python
+    buildCommand: pip install -r backend/requirements-render.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: INDU_DEPLOYMENT_MODE
+        value: cloud
+      - key: INDU_DATA_DIR
+        value: /tmp/indu
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: INDU_ALLOWED_ORIGINS
+        sync: false

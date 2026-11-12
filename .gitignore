@@ -16,3 +16,4 @@ backend/whatsapp/.wwebjs_cache/
 build/
 release/
 reports/installer-test/
+reports/render-validation/

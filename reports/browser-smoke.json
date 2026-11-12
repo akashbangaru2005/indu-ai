@@ -19,6 +19,7 @@
     "Unexpected microphone loss shows Error and releases voice resources",
     "Contacts persist through the local API and message preview requires explicit confirmation; cancel transmits nothing",
     "Settings masks and clears API input, avoids browser secret storage, exposes audio device controls and handles simulated validation/disconnect",
+    "Cloud settings show server-managed credentials while preserving browser audio device selection",
     "A natural-language timer becomes due through the real scheduler, displays an alert and stays dismissed",
     "No uncaught browser runtime errors",
     "Desktop and mobile layouts scroll without clipping or horizontal overflow"

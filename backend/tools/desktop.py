@@ -2,13 +2,14 @@
 import os
 import subprocess
 from pathlib import Path
+from ..deployment import is_cloud
 
 EXECUTABLES = {"word": "WINWORD.EXE", "excel": "EXCEL.EXE", "powerpoint": "POWERPNT.EXE", "chrome": "chrome.exe"}
 SETTINGS = {"settings": "ms-settings:", "bluetooth settings": "ms-settings:bluetooth", "wi-fi settings": "ms-settings:network-wifi"}
 
 
 def launch_registered(name):
-    if os.name != "nt" or name not in EXECUTABLES:
+    if is_cloud() or os.name != "nt" or name not in EXECUTABLES:
         return False
     import winreg
     filename = EXECUTABLES[name]
@@ -39,7 +40,7 @@ def launch_registered(name):
 
 
 def open_known_folder(name):
-    if os.name != "nt" or name != "downloads":
+    if is_cloud() or os.name != "nt" or name != "downloads":
         return False
     import winreg
     folder = Path.home() / "Downloads"

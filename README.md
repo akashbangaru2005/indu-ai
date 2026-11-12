@@ -37,7 +37,58 @@ The API starts even if optional voice dependencies or credentials are unavailabl
 
 If the interface reports that the backend needs restarting, stop the old backend with **Ctrl+C in its terminal**, then run the backend command above from the project root. Use the same terminal to preserve its Gemini key environment variable. Refresh the browser with **Ctrl+Shift+R**. Backend 0.8.0 advertises the continuous-voice capability; earlier backends must be restarted to load it. `--reload` watches backend source changes during development.
 
-This app is intended for one user on localhost. Conversation history is shared in process and is cleared on restart. Browser origins are restricted; configure `INDU_ALLOWED_ORIGINS` when changing frontend ports. There is no user authentication for network hosting.
+Local mode is intended for a single desktop user. Cloud mode runs the browser-facing Gemini API without access to the server's desktop or audio devices. Conversation history is shared in process and cleared on restart; the API does not provide user accounts or per-user data isolation. Browser origins and hostnames are restricted.
+
+## Deploy the backend on Render
+
+Keep the Render service's **Root Directory** at the repository root (leave it blank). The Windows application continues to use `backend/requirements.txt`; Render uses the separate file below:
+
+| Render setting | Value |
+| --- | --- |
+| Runtime | Python |
+| Build command | `pip install -r backend/requirements-render.txt` |
+| Start command | `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` |
+| Health check path | `/health` |
+| Python | `.python-version` selects the latest 3.13 patch |
+
+The `:app` part is required: `backend.main` identifies the module and `app` identifies its FastAPI object. See Render's [FastAPI deployment guide](https://render.com/docs/deploy-fastapi). Remove a conflicting `PYTHON_VERSION` dashboard override or set it to a fully qualified 3.13 patch version; Render gives that variable precedence over `.python-version` ([Python version configuration](https://render.com/docs/python-version)).
+
+Set these environment variables in the Render dashboard:
+
+```text
+INDU_DEPLOYMENT_MODE=cloud
+GEMINI_API_KEY=<set the secret in Render, never in source>
+INDU_ALLOWED_ORIGINS=https://your-frontend.example
+INDU_DATA_DIR=/tmp/indu
+```
+
+`INDU_ALLOWED_ORIGINS` accepts comma-separated exact frontend origins, without URL paths. Set the frontend's `VITE_API_URL` to the HTTPS Render backend URL and rebuild that frontend. The existing client derives the corresponding `wss://.../ws/voice` URL. Render supports WebSockets on the same web service ([WebSocket guidance](https://render.com/docs/websocket)).
+
+Render's `RENDER_EXTERNAL_HOSTNAME` is automatically accepted as an HTTP/WebSocket host and same-origin HTTPS frontend. For a custom backend domain, additionally set `INDU_ALLOWED_HOSTS=api.example.com`; frontend CORS origins and backend hostnames are separate settings. The hostname comes from Render's [built-in environment variables](https://render.com/docs/environment-variables).
+
+`render.yaml` contains the same configuration for Blueprint-managed services, with secret values left for the dashboard. For an existing manually configured service, update its build/start commands and environment settings explicitly; simply adding the YAML file does not change its dashboard settings. Redeploy after these changes; clear the build cache if it retains the old build configuration.
+
+In cloud mode:
+
+- Text chat, browser microphone/audio streaming through Gemini Live, contacts, reminders and read-only live-information requests remain available. Optional Edge TTS can generate an MP3 for the browser, without playing audio on the server.
+- Local microphone capture (`/api/listen`), pygame playback, desktop/application launch actions, server browser opening for WhatsApp and desktop shutdown are disabled before touching hardware or processes.
+- Gemini uses `GEMINI_API_KEY` from the server environment. Windows Credential Manager is not used, and key replacement/disconnection through the browser is disabled for the shared cloud service. Your local Windows saved key stays on that PC.
+- `/health` reports `deployment_mode` and separate capabilities for browser audio and local hardware. A missing Gemini key gives a degraded but running health response; the voice endpoint then returns a clear missing-key error after upgrade.
+
+The Render dependency file excludes pygame, sounddevice, NumPy, Faster-Whisper, Playwright, OS keyring libraries and desktop GUI tooling. Browser voice sends PCM directly to Gemini; it does not need a server microphone, SDL, PortAudio or Whisper.
+
+`/tmp/indu` is ephemeral. To retain cloud contacts/reminders across service restarts, configure a persistent Render disk and point `INDU_DATA_DIR` at a directory on that mount. Use one worker/instance with the current in-memory chat/preview state and SQLite implementation. This deployment fix does not add account isolation, distributed state or authentication.
+
+Cloud verification (no real API key or hardware required):
+
+```bash
+python -m pip install -r backend/requirements-render.txt
+python -m pip check
+python benchmarks/cloud_smoke.py
+python -m unittest discover -s backend/tests -p test_live.py -v
+```
+
+The smoke check blocks local dependency imports, starts a real Uvicorn server, checks health/host/CORS behavior and a real WebSocket upgrade, and runs five mocked provider audio turns on the same cloud session. `.github/workflows/render-cloud.yml` runs the clean install and these checks on Ubuntu/Python 3.13 after a push, PR or manual dispatch. See [reports/render-deployment-fix.md](reports/render-deployment-fix.md) for the checks actually run in this workspace and their limits.
 
 ## One-time key storage without a test request
 

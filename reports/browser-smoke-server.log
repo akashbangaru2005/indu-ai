@@ -1,69 +1,69 @@
 
-  VITE v7.3.8  ready in 535 ms
+  VITE v7.3.8  ready in 402 ms
 
-  ➜  Local:   http://127.0.0.1:49407/
-INFO:     Started server process [29404]
+  ➜  Local:   http://127.0.0.1:54461/
+INFO:     Started server process [25048]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:49406 (Press CTRL+C to quit)
-INFO:     127.0.0.1:49219 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "OPTIONS /health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "GET /health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "OPTIONS /api/app/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59784 - "OPTIONS /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "OPTIONS /api/whatsapp/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "OPTIONS /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "GET /api/app/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59789 - "OPTIONS /api/whatsapp/messages HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59784 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59788 - "GET /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59783 - "OPTIONS /api/settings/gemini HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/settings/gemini HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:51946 - "WebSocket /ws/voice" [accepted]
+INFO:     Uvicorn running on http://127.0.0.1:54460 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52922 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63900 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63900 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63900 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63900 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63900 - "OPTIONS /api/app/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63901 - "OPTIONS /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "OPTIONS /api/whatsapp/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63903 - "OPTIONS /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63904 - "OPTIONS /api/whatsapp/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63900 - "GET /api/app/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63901 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63905 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63903 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63903 - "OPTIONS /api/settings/gemini HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/settings/gemini HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63907 - "WebSocket /ws/voice" [accepted]
 INFO:     connection open
-INFO:     127.0.0.1:59785 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "OPTIONS / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "GET /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "POST /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "GET /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "OPTIONS /api/whatsapp/send HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "POST /api/whatsapp/send HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "GET /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "OPTIONS /api/whatsapp/preview/d528940f3b6242dd97381c2728389c1f/cancel HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "POST /api/whatsapp/preview/d528940f3b6242dd97381c2728389c1f/cancel HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/settings/gemini HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "OPTIONS /api/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "POST /api/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59785 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/contacts HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "GET /api/reminders HTTP/1.1" 200 OK
-INFO:     127.0.0.1:61070 - "OPTIONS /api/reminders/ef8ecfdeebea490a89d4a086334bb511/dismiss HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "POST /api/reminders/ef8ecfdeebea490a89d4a086334bb511/dismiss HTTP/1.1" 200 OK
-INFO:     127.0.0.1:59790 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "OPTIONS / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "POST /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "GET /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "OPTIONS /api/whatsapp/send HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "POST /api/whatsapp/send HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "GET /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "OPTIONS /api/whatsapp/preview/b6c64f4406f845758d2b80c19e8bc9ff/cancel HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "POST /api/whatsapp/preview/b6c64f4406f845758d2b80c19e8bc9ff/cancel HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/settings/gemini HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "OPTIONS /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63902 - "GET /api/whatsapp/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/contacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "GET /api/whatsapp/messages HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "GET /api/reminders HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60667 - "OPTIONS /api/reminders/0cd4d9bdce7646149eaf0d9b75f9cd67/dismiss HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "POST /api/reminders/0cd4d9bdce7646149eaf0d9b75f9cd67/dismiss HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60666 - "GET /api/reminders HTTP/1.1" 200 OK

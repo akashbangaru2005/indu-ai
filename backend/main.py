@@ -19,6 +19,7 @@ from starlette.background import BackgroundTask
 
 if __package__:
     from . import credentials
+    from .deployment import deployment_mode, is_cloud, allowed_hosts, allowed_origins
     from .brain.persona import affection_reply
     from .brain.llm import BrainError, InduBrain, SYSTEM_INSTRUCTION
     from .tools.router import InduCommandRouter
@@ -26,6 +27,7 @@ if __package__:
     from .voice.tts import InduTextToSpeech
 else:
     import credentials
+    from deployment import deployment_mode, is_cloud, allowed_hosts, allowed_origins
     from brain.persona import affection_reply
     from brain.llm import BrainError, InduBrain, SYSTEM_INSTRUCTION
     from tools.router import InduCommandRouter
@@ -42,11 +44,11 @@ logger = logging.getLogger(__name__)
 VERSION = "0.8.0"
 API_CONTRACT = 1
 FEATURES = ["contacts", "whatsapp_previews", "gemini_text", "gemini_live", "continuous_voice", "secure_setup", "reminders", "live_information", "desktop_launch"]
+if is_cloud():
+    FEATURES.remove("desktop_launch")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 GEMINI_LIVE_MODEL = os.environ.get("GEMINI_LIVE_MODEL", "gemini-3.8-live")
-ALLOWED_ORIGINS = [origin.strip() for origin in os.environ.get(
-    "INDU_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
-).split(",") if origin.strip()]
+ALLOWED_ORIGINS = allowed_origins()
 brain = InduBrain(client_provider=lambda: gemini_client)
 router = InduCommandRouter()
 tts = InduTextToSpeech()
@@ -62,7 +64,7 @@ key_verified = False
 @asynccontextmanager
 async def lifespan(app):
     global gemini_client, GEMINI_API_KEY, key_source
-    stored = await asyncio.to_thread(credentials.load_key)
+    stored = None if is_cloud() else await asyncio.to_thread(credentials.load_key)
     if stored:
         GEMINI_API_KEY, key_source = stored, "os_credential_store"
     if genai is not None and GEMINI_API_KEY:
@@ -86,7 +88,7 @@ async def lifespan(app):
 
 
 app = FastAPI(title="Indu AI Assistant", version=VERSION, lifespan=lifespan)
-app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost", "testserver"])
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts())
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS,
                    allow_credentials=False, allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["Content-Type"])
 
@@ -123,12 +125,15 @@ class GeminiKeyRequest(BaseModel):
 def gemini_settings():
     return {"configured": gemini_client is not None, "source": key_source,
             "verified": key_verified, "model": brain.model, "live_model": GEMINI_LIVE_MODEL,
-            "active_voice_sessions": active_voice_sessions}
+            "active_voice_sessions": active_voice_sessions,
+            "credential_management":"environment" if is_cloud() else "os_credential_store"}
 
 
 @app.put("/api/settings/gemini")
 async def configure_gemini(request: GeminiKeyRequest):
     global gemini_client, GEMINI_API_KEY, key_source, key_verified
+    if is_cloud():
+        raise HTTPException(409, "Cloud credentials are managed with GEMINI_API_KEY in Render environment settings.")
     async with credential_lock:
         if active_voice_sessions:
             raise HTTPException(409, "Exit the active voice conversation before replacing the key.")
@@ -166,6 +171,8 @@ async def configure_gemini(request: GeminiKeyRequest):
 @app.delete("/api/settings/gemini")
 async def disconnect_gemini():
     global gemini_client, GEMINI_API_KEY, key_source, key_verified
+    if is_cloud():
+        raise HTTPException(409, "Cloud credentials are managed with GEMINI_API_KEY in Render environment settings.")
     async with credential_lock:
         if active_voice_sessions:
             raise HTTPException(409, "Exit the active voice conversation before disconnecting Gemini.")
@@ -362,11 +369,13 @@ def root(request: Request = None):
 
 @app.get("/api/app/status")
 def desktop_status():
-    return {"desktop": os.environ.get("INDU_DESKTOP") == "1"}
+    return {"desktop": not is_cloud() and os.environ.get("INDU_DESKTOP") == "1"}
 
 
 @app.post("/api/app/exit")
 def exit_application():
+    if is_cloud():
+        raise HTTPException(409, "The cloud service is managed by Render; desktop shutdown is disabled.")
     callback = getattr(app.state, "exit_callback", None)
     if os.environ.get("INDU_DESKTOP") != "1" or callback is None:
         raise HTTPException(409, "Stop the development backend in its terminal with Ctrl+C.")
@@ -394,6 +403,9 @@ def health():
     configured = gemini["configured"]
     return {
         "status": "configured" if configured else "degraded",
+        "deployment_mode": deployment_mode(),
+        "capabilities":{"desktop_control":not is_cloud(), "backend_microphone":not is_cloud(),
+                        "backend_audio_playback":not is_cloud(), "browser_audio_streaming":True},
         "version": VERSION, "api_contract": API_CONTRACT, "features": FEATURES,
         "assistant": "Indu", "router": router is not None,
         "brain": configured, "gemini": gemini,
@@ -446,6 +458,8 @@ def clear_memory():
 @app.post("/api/listen")
 def listen():
     global stt
+    if is_cloud():
+        raise HTTPException(409, "The server microphone is disabled in cloud mode. Use browser audio through /ws/voice for Gemini Live.")
     # Only load Whisper on demand, and serialize access to the physical microphone.
     with stt_lock:
         try:

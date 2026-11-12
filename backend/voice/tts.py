@@ -15,6 +15,7 @@ import threading
 from uuid import uuid4
 from pathlib import Path
 from ..paths import data_directory
+from ..deployment import is_cloud
 
 try:
     import edge_tts  # type: ignore[import-not-found]
@@ -154,11 +155,14 @@ class InduTextToSpeech:
         text: str,
         voice: str | None = None,
     ):
-
+        if is_cloud():
+            return None
         with _PLAYBACK_LOCK:
             return self._speak(text, voice)
 
     def _speak(self, text, voice=None):
+        if is_cloud():
+            return None
 
         output_file = self.generate_audio(
             text,
@@ -213,7 +217,8 @@ class InduTextToSpeech:
         text: str,
         voice: str | None = None,
     ):
-
+        if is_cloud():
+            return None
         thread = threading.Thread(
             target=self.speak,
             args=(text, voice),

@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
 from ..paths import data_directory
+from ..deployment import is_cloud
 
 DEFAULT_DATABASE = Path(os.environ.get("INDU_DATABASE", str(data_directory() / "indu.db")))
 
@@ -39,7 +40,7 @@ class ContactStore:
         self.database = Path(database)
         self.database.parent.mkdir(parents=True, exist_ok=True)
         legacy = Path(__file__).resolve().parents[1] / "database" / "indu.db"
-        if database == DEFAULT_DATABASE and not os.environ.get("INDU_DATABASE") and not self.database.exists() and legacy.is_file():
+        if not is_cloud() and database == DEFAULT_DATABASE and not os.environ.get("INDU_DATABASE") and not self.database.exists() and legacy.is_file():
             with sqlite3.connect(legacy) as source, sqlite3.connect(self.database) as destination:
                 source.backup(destination)
         with self.connect() as connection:

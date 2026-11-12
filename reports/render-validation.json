@@ -1,0 +1,80 @@
+{
+  "status": "passed_available_checks_linux_execution_pending",
+  "original_windows_requirements": {
+    "unchanged": true,
+    "sha256": "38f1237a241df49cf6a32ac5faa94c8b59888f0625809b4d13ddd619959332c5"
+  },
+  "minimal_install": {
+    "status": "passed",
+    "platform": "Windows",
+    "python": "3.13.5",
+    "package_count": 43,
+    "local_packages_absent": [
+      "faster-whisper",
+      "keyring",
+      "numpy",
+      "playwright",
+      "pyautogui",
+      "pygame",
+      "pyttsx3",
+      "sounddevice"
+    ],
+    "evidence": "render-requirements-install.log"
+  },
+  "pip_check": {
+    "status": "passed",
+    "evidence": "render-pip-check.log"
+  },
+  "linux_cp313_wheels": {
+    "status": "passed",
+    "wheel_count": 42,
+    "evidence": "render-linux-wheels.log",
+    "scope": "Linux wheel resolution/download, not native Linux installation or execution"
+  },
+  "cloud_integration": {
+    "status": "passed",
+    "checks": 8,
+    "evidence": "render-cloud-smoke.json",
+    "gemini_provider": "mocked; no real key used"
+  },
+  "local_windows_regressions": {
+    "status": "passed",
+    "tests": 73,
+    "evidence": "render-local-regression-tests.log"
+  },
+  "minimal_voice_tests": {
+    "status": "passed",
+    "tests": 8,
+    "evidence": "render-minimal-voice-tests.log"
+  },
+  "frontend_tests": {
+    "status": "passed",
+    "tests": 18,
+    "evidence": "render-frontend-tests.log"
+  },
+  "browser_regressions": {
+    "status": "passed",
+    "checks": 22,
+    "evidence": "browser-smoke.json"
+  },
+  "frontend_build": {
+    "status": "passed",
+    "evidence": "render-frontend-build.log",
+    "advisory": "Existing Three.js chunk-size warning"
+  },
+  "render_configuration": {
+    "status": "validated",
+    "dashboard_updated": false,
+    "build_command": "pip install -r backend/requirements-render.txt",
+    "start_command": "uvicorn backend.main:app --host 0.0.0.0 --port $PORT",
+    "mode": "cloud"
+  },
+  "native_linux": {
+    "status": "not_run",
+    "reason": "No installed WSL distribution, Docker or Podman on this Windows host",
+    "ci_workflow": ".github/workflows/render-cloud.yml",
+    "ci_executed": false
+  },
+  "render_deployed": false,
+  "real_gemini_api_requests": false
+}
